@@ -2,6 +2,7 @@ package com.revature.service;
 
 import java.util.ArrayList;
 
+import com.revature.model.FriendRequest;
 import com.revature.model.Photo;
 import com.revature.model.User;
 import com.revature.repository.SnapsterImpl;
@@ -37,5 +38,9 @@ public class SnapsterService {
 		ArrayList<Photo> photos = snapsterImpl.getPhotos(username);
 
 		return photos;
+	}
+	
+	public void insertFriendRequest(FriendRequest req) {
+		snapsterImpl.insertFriendRequest(req);
 	}
 }

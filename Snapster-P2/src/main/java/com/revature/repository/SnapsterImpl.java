@@ -3,15 +3,11 @@ package com.revature.repository;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Root;
-
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-import org.hibernate.query.Query;
 
+import com.revature.model.FriendRequest;
 import com.revature.model.Photo;
 import com.revature.model.User;
 import com.revature.utility.HibernateSessionFactory;
@@ -102,5 +98,23 @@ public class SnapsterImpl {
 			s.close();
 		}
 		return photos;
+	}
+	
+	public void insertFriendRequest(FriendRequest req) {
+
+		Session s = null;
+		Transaction tx = null;
+
+		try {
+			s = HibernateSessionFactory.getSession();
+			tx = s.beginTransaction();
+			s.save(req);
+			tx.commit();
+		} catch (HibernateException e) {
+			e.printStackTrace();
+			tx.rollback();
+		} finally {
+			s.close();
+		}
 	}
 }
