@@ -117,4 +117,22 @@ public class SnapsterImpl {
 			s.close();
 		}
 	}
+	
+	public void approveRequest(FriendRequest req) {
+		Session s = null;
+		Transaction tx = null;
+
+		try {
+			s = HibernateSessionFactory.getSession();
+			tx = s.beginTransaction();
+			req.setApproved(true);
+			s.update(req);
+			tx.commit();
+		} catch (HibernateException e) {
+			e.printStackTrace();
+			tx.rollback();
+		} finally {
+			s.close();
+		}	
+	}
 }

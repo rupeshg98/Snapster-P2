@@ -43,4 +43,8 @@ public class SnapsterService {
 	public void insertFriendRequest(FriendRequest req) {
 		snapsterImpl.insertFriendRequest(req);
 	}
+	
+	public void approveRequest(FriendRequest req) {
+		snapsterImpl.approveRequest(req);
+	}
 }

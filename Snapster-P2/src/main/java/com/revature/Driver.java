@@ -3,6 +3,7 @@ package com.revature;
 import java.util.ArrayList;
 import java.util.Date;
 
+import com.revature.model.FriendRequest;
 import com.revature.model.Photo;
 import com.revature.model.User;
 import com.revature.service.SnapsterService;
@@ -15,9 +16,19 @@ public class Driver {
 		// driver.insertUser();
 		// driver.validateUser();
 		//driver.insertPhoto();
-		driver.getPhotos();
+		//driver.getPhotos();
+		driver.insertRequest();
 	}
 
+	public void insertRequest() {
+		String user1 = "user1";
+		String user2 = "user2";
+		FriendRequest req = new FriendRequest(user1, user2, false);
+		service.insertFriendRequest(req);
+		service.approveRequest(req);
+	}
+	
+	
 	public void insertUser() {
 		String username = "user2";
 		String password = "pwd";
