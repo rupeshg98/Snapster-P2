@@ -18,6 +18,8 @@ public class Driver {
 		//driver.insertPhoto();
 		//driver.getPhotos();
 		driver.insertRequest();
+		driver.deleteRequest();
+		driver.insertRequest();
 	}
 
 	public void insertRequest() {
@@ -26,6 +28,14 @@ public class Driver {
 		FriendRequest req = new FriendRequest(user1, user2, false);
 		service.insertFriendRequest(req);
 		service.approveRequest(req);
+	}
+	
+	public void deleteRequest() {
+		String user1 = "user1";
+		String user2 = "user2";
+		FriendRequest req = new FriendRequest(user1, user2, false);
+		service.deleteRequest(req);
+		
 	}
 	
 	

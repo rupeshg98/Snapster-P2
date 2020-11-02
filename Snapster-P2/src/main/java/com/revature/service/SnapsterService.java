@@ -47,4 +47,8 @@ public class SnapsterService {
 	public void approveRequest(FriendRequest req) {
 		snapsterImpl.approveRequest(req);
 	}
+	
+	public void deleteRequest(FriendRequest req) {
+		snapsterImpl.deleteRequest(req);
+	}
 }

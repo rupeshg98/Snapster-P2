@@ -135,4 +135,22 @@ public class SnapsterImpl {
 			s.close();
 		}	
 	}
+	
+	public void deleteRequest(FriendRequest req) {
+
+		Session s = null;
+		Transaction tx = null;
+
+		try {
+			s = HibernateSessionFactory.getSession();
+			tx = s.beginTransaction();
+			s.delete(req);
+			tx.commit();
+		} catch (HibernateException e) {
+			e.printStackTrace();
+			tx.rollback();
+		} finally {
+			s.close();
+		}
+	}
 }
