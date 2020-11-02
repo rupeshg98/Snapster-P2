@@ -23,6 +23,9 @@ public class FriendRequest implements Serializable{
 	@Column(name = "approval")
 	boolean isApproved;
 
+	public FriendRequest() {
+		
+	}
 	public FriendRequest(String sender, String receiver, boolean isApproved) {
 		super();
 		this.sender = sender;

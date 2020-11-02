@@ -125,7 +125,7 @@ public class SnapsterImpl {
 		try {
 			s = HibernateSessionFactory.getSession();
 			tx = s.beginTransaction();
-			req.setApproved(true);
+			
 			s.update(req);
 			tx.commit();
 		} catch (HibernateException e) {
@@ -152,5 +152,27 @@ public class SnapsterImpl {
 		} finally {
 			s.close();
 		}
+	}
+	public ArrayList<FriendRequest> getFriendRequests(String receiver) {
+
+		Session s = null;
+		Transaction tx = null;
+		ArrayList<FriendRequest> friends = new ArrayList<FriendRequest>();
+
+		try {
+			s = HibernateSessionFactory.getSession();
+			tx = s.beginTransaction();
+			List<FriendRequest> friends2 = s.createQuery("FROM FriendRequest WHERE receiver = :xyz")
+					.setParameter("xyz", receiver).getResultList();
+
+			friends = new ArrayList<FriendRequest>(friends2);
+			tx.commit();
+		} catch (HibernateException e) {
+			e.printStackTrace();
+			tx.rollback();
+		} finally {
+			s.close();
+		}
+		return friends;
 	}
 }

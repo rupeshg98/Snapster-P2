@@ -45,10 +45,14 @@ public class SnapsterService {
 	}
 	
 	public void approveRequest(FriendRequest req) {
+		req.setApproved(true);
 		snapsterImpl.approveRequest(req);
 	}
 	
 	public void deleteRequest(FriendRequest req) {
 		snapsterImpl.deleteRequest(req);
+	}
+	public ArrayList<FriendRequest> getFriendRequests(String receiver) {
+		return snapsterImpl.getFriendRequests(receiver);
 	}
 }

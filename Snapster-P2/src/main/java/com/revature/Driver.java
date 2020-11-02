@@ -17,9 +17,20 @@ public class Driver {
 		// driver.validateUser();
 		//driver.insertPhoto();
 		//driver.getPhotos();
-		driver.insertRequest();
-		driver.deleteRequest();
-		driver.insertRequest();
+		//driver.insertRequest();
+		//driver.deleteRequest();
+		//driver.insertRequest();
+		driver.getFriendRequests();
+	}
+
+	public void getFriendRequests() {
+		String receiver = "user2";
+		ArrayList<FriendRequest> friends = service.getFriendRequests(receiver);
+		System.out.println("No.of FriendRequests: " + friends.size());
+		for (FriendRequest friend : friends) {
+			System.out.println(
+					"Friend for : " + friend.getReceiver() + " : " + friend.getSender() + ", isApproved: " + friend.isApproved());
+		}
 	}
 
 	public void insertRequest() {
