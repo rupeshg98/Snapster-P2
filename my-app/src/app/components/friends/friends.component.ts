@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import {FriendServiceService} from 'src/app/services/friend-service.service'
 @Component({
   selector: 'app-friends',
   templateUrl: './friends.component.html',
@@ -7,13 +7,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FriendsComponent implements OnInit {
 
-  constructor(private friendService:FriendService) { }
+  constructor(private friendService:FriendServiceService) { }
 
   ngOnInit(): void {
   }
 
   requests:Object[] = []
-  findAllFriendRequests(String:username){
+  findAllFriendRequests(username){
     this.friendService.findAllFriendRequests(username).subscribe(
       (data) => {
         console.log(data)
