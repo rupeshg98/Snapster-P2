@@ -1,6 +1,5 @@
 package com.revature.controller;
 
-<<<<<<< HEAD
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,16 +26,5 @@ public class SnapsterController {
 	public ArrayList<FriendRequest> findAllFriendRequests(@PathVariable String receiver){
 		return this.snapsterService.getFriendRequests(receiver);
 	}
-=======
-import org.springframework.web.bind.annotation.RestController;
-
-import com.revature.service.SnapsterService;
-
-@RestController("snapsterController")
-public class SnapsterController {
-
-	private SnapsterService snapsterService;
-	
-	
->>>>>>> 73ee484b1bc67abf0c64865322ca5e8a3980ebe0
 }
+
