@@ -7,9 +7,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FriendsComponent implements OnInit {
 
-  constructor() { }
+  constructor(private friendService:FriendService) { }
 
   ngOnInit(): void {
   }
 
+  requests:Object[] = []
+  findAllFriendRequests(String:username){
+    this.friendService.findAllFriendRequests(username).subscribe(
+      (data) => {
+        console.log(data)
+        this.requests = data
+      },
+      () => {
+        console.log("Something went wrong.")
+      }
+    )
+  }
 }

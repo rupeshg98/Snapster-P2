@@ -5,21 +5,24 @@ import java.util.ArrayList;
 import com.revature.model.FriendRequest;
 import com.revature.model.Photo;
 import com.revature.model.User;
+import com.revature.repository.Snapster;
 import com.revature.repository.SnapsterImpl;
 
+@Service("snapsterService")
 public class SnapsterService {
-	SnapsterImpl snapsterImpl = new SnapsterImpl();
+	@Autowired
+	public Snapster snapsterRepo;
 
 	public void insertUser(User user) {
-		snapsterImpl.insertUser(user);
+		snapsterRepo.insertUser(user);
 	}
 
 	public void insertPhoto(Photo photo) {
-		snapsterImpl.insertPhoto(photo);
+		snapsterRepo.insertPhoto(photo);
 	}
 
 	public boolean validateUser(String username, String pwd) {
-		User user = snapsterImpl.getUser(username);
+		User user = snapsterRepo.getUser(username);
 		if (user != null) {
 			if (pwd != null && pwd.equals(user.getPassword())) {
 				return true;
@@ -29,30 +32,30 @@ public class SnapsterService {
 	}
 
 	public User getUser(String username) {
-		User user = snapsterImpl.getUser(username);
+		User user = snapsterRepo.getUser(username);
 
 		return user;
 	}
 
 	public ArrayList<Photo> getPhotos(String username) {
-		ArrayList<Photo> photos = snapsterImpl.getPhotos(username);
+		ArrayList<Photo> photos = snapsterRepo.getPhotos(username);
 
 		return photos;
 	}
 	
 	public void insertFriendRequest(FriendRequest req) {
-		snapsterImpl.insertFriendRequest(req);
+		snapsterRepo.insertFriendRequest(req);
 	}
 	
 	public void approveRequest(FriendRequest req) {
 		req.setApproved(true);
-		snapsterImpl.approveRequest(req);
+		snapsterRepo.approveRequest(req);
 	}
 	
 	public void deleteRequest(FriendRequest req) {
-		snapsterImpl.deleteRequest(req);
+		snapsterRepo.deleteRequest(req);
 	}
 	public ArrayList<FriendRequest> getFriendRequests(String receiver) {
-		return snapsterImpl.getFriendRequests(receiver);
+		return snapsterRepo.getFriendRequests(receiver);
 	}
 }
