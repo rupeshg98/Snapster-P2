@@ -12,7 +12,7 @@ import com.revature.model.Photo;
 import com.revature.model.User;
 import com.revature.utility.HibernateSessionFactory;
 
-public class SnapsterImpl {
+public class SnapsterImpl implements Snapster{
 
 	public void insertUser(User user) {
 
