@@ -1,0 +1,29 @@
+<!-- This XML file is used to define our Application Context. We can add 
+	beans to our IOC container here. We'll also configure our Spring modules 
+	here. -->
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:c="http://www.springframework.org/schema/c"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+
+	<!-- We don't ideally want to define all our beans via this XML file. Sometimes
+	we want to use annotations instead! In order to do so, however, we need to specify
+	that we want to use an annotation-driven approach here in our applicationContext.xml -->
+	
+	<!-- Activate the annotations, meaning that we want to use an annotation-driven
+	approach. -->
+	<context:annotation-config></context:annotation-config>
+	
+	<!-- We must also specify the packages inside of which we will use Spring
+	annotations. -->
+	
+	<context:component-scan base-package="com.revature"></context:component-scan>
+	
+	
+	
+
+</beans>

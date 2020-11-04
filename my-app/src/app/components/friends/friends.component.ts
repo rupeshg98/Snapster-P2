@@ -7,21 +7,11 @@ import {FriendServiceService} from 'src/app/services/friend-service.service'
 })
 export class FriendsComponent implements OnInit {
 
-  constructor(private friendService:FriendServiceService) { }
+  constructor() { }
 
   ngOnInit(): void {
+   
   }
 
-  requests:Object[] = []
-  findAllFriendRequests(username){
-    this.friendService.findAllFriendRequests(username).subscribe(
-      (data) => {
-        console.log(data)
-        this.requests = data
-      },
-      () => {
-        console.log("Something went wrong.")
-      }
-    )
-  }
+  
 }
