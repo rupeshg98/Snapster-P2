@@ -3,6 +3,9 @@ package com.revature;
 import java.util.ArrayList;
 import java.util.Date;
 
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
 import com.revature.model.FriendRequest;
 import com.revature.model.Photo;
 import com.revature.model.User;
@@ -12,7 +15,11 @@ public class Driver {
 	SnapsterService service = new SnapsterService();
 
 	public static void main(String[] args) {
+		
 		Driver driver = new Driver();
+		ApplicationContext ctx = new ClassPathXmlApplicationContext("applicationContext.xml");
+		driver.service = ctx.getBean("snapsterService", SnapsterService.class);
+		
 		// driver.insertUser();
 		// driver.validateUser();
 		//driver.insertPhoto();
@@ -21,6 +28,9 @@ public class Driver {
 		//driver.deleteRequest();
 		//driver.insertRequest();
 		driver.getFriendRequests();
+		
+
+		
 	}
 
 	public void getFriendRequests() {

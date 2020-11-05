@@ -6,12 +6,13 @@ import java.util.List;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.springframework.stereotype.Repository;
 
 import com.revature.model.FriendRequest;
 import com.revature.model.Photo;
 import com.revature.model.User;
 import com.revature.utility.HibernateSessionFactory;
-
+@Repository(value = "snapsterRepo")
 public class SnapsterImpl implements Snapster{
 
 	public void insertUser(User user) {
@@ -154,7 +155,7 @@ public class SnapsterImpl implements Snapster{
 		}
 	}
 	public ArrayList<FriendRequest> getFriendRequests(String receiver) {
-
+		System.out.println("In repository getFriendRequests");
 		Session s = null;
 		Transaction tx = null;
 		ArrayList<FriendRequest> friends = new ArrayList<FriendRequest>();
@@ -173,6 +174,7 @@ public class SnapsterImpl implements Snapster{
 		} finally {
 			s.close();
 		}
+		
 		return friends;
 	}
 }

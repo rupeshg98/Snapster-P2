@@ -13,8 +13,12 @@ import com.revature.repository.SnapsterImpl;
 
 @Service("snapsterService")
 public class SnapsterService {
+	
+	private Snapster snapsterRepo;
 	@Autowired
-	public Snapster snapsterRepo;
+	public void setSnapsterRepository(SnapsterImpl snapsterImpl) {
+		this.snapsterRepo = snapsterImpl;
+	}
 
 	public void insertUser(User user) {
 		snapsterRepo.insertUser(user);
@@ -59,6 +63,8 @@ public class SnapsterService {
 		snapsterRepo.deleteRequest(req);
 	}
 	public ArrayList<FriendRequest> getFriendRequests(String receiver) {
+		System.out.println("In service getFriendRequests");
 		return snapsterRepo.getFriendRequests(receiver);
+		
 	}
 }
