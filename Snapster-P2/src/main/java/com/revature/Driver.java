@@ -1,5 +1,6 @@
 package com.revature;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -9,6 +10,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 import com.revature.model.FriendRequest;
 import com.revature.model.Photo;
 import com.revature.model.User;
+import com.revature.service.S3Service;
 import com.revature.service.SnapsterService;
 
 public class Driver {
@@ -111,6 +113,7 @@ public class Driver {
 	}
 	
 	public void addImageToS3() {
+		S3Service s3service = new S3Service();
 		File file = new File("example.png");
 		s3service.putObject(file);
 	}
