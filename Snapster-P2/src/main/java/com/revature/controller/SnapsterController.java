@@ -15,7 +15,7 @@ public class SnapsterController {
 	
 	SnapsterService snapsterService;
 
-	@PostMapping(path = "/validateLogin", consumes =MediaType.APPLICATION_JSON_VALUE)
+	@PostMapping(path = "/home", consumes =MediaType.APPLICATION_JSON_VALUE)
 	public void validateLogin(String username, String password) {
 		System.out.println("SnapsterController Received Username " + username + " , Password: " + password);
 		

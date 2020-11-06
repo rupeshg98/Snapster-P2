@@ -114,7 +114,7 @@ public class Driver {
 	
 	public void addImageToS3() {
 		S3Service s3service = new S3Service();
-		File file = new File("example.png");
+		File file = new File("Receipt1.PNG");
 		s3service.putObject(file);
 	}
 }
