@@ -12,7 +12,7 @@ import com.revature.service.SnapsterService;
 @RestController(value = "SnapsterController")
 
 @CrossOrigin(origins = {"http://localhost:4200/login"}, allowedHeaders="*")
-@RequestMapping(path = "/validateLogin")
+
 public class SnapsterController {
 	
 	SnapsterService snapsterService;
