@@ -10,7 +10,7 @@ import com.revature.service.SnapsterService;
 
 @RestController(value = "SnapsterController")
 
-@CrossOrigin(origins = {"*"})
+@CrossOrigin(origins = {"http://localhost:4200"})
 public class SnapsterController {
 	
 	SnapsterService snapsterService;
