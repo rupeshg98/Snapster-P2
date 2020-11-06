@@ -9,7 +9,7 @@ import com.amazonaws.services.s3.model.PutObjectResult;
 import com.revature.repository.S3Repo;
 import com.revature.repository.S3RepoImpl;
 
-@Service(value = "s3Service")
+@Service(value = "s3service")
 
 public class S3Service {
 	
