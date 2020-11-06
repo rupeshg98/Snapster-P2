@@ -1,12 +1,16 @@
 package com.revature.repository;
 
 import java.io.File;
+
+import org.springframework.stereotype.Repository;
+
 import com.amazonaws.AmazonServiceException;
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.model.PutObjectResult;
 import com.revature.utility.S3ConnectionFactory;
 
-public class S3RepoImpl {
+@Repository(value = "S3Repo")
+public class S3RepoImpl implements S3Repo {
 	
 	public PutObjectResult putObject(File file) {
 		AmazonS3 s3 = S3ConnectionFactory.getConnection();

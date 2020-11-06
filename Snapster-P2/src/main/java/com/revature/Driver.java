@@ -15,12 +15,14 @@ import com.revature.service.SnapsterService;
 
 public class Driver {
 	SnapsterService service = new SnapsterService();
+	S3Service s3service = new S3Service();
 
 	public static void main(String[] args) {
 		
 		Driver driver = new Driver();
 		ApplicationContext ctx = new ClassPathXmlApplicationContext("applicationContext.xml");
 		driver.service = ctx.getBean("snapsterService", SnapsterService.class);
+		driver.s3service = ctx.getBean("s3service",S3Service.class);
 		
 		// driver.insertUser();
 		// driver.validateUser();
@@ -31,8 +33,6 @@ public class Driver {
 		//driver.insertRequest();
 		//driver.getFriendRequests();
 		driver.addImageToS3();
-		
-
 		
 	}
 
@@ -113,7 +113,6 @@ public class Driver {
 	}
 	
 	public void addImageToS3() {
-		S3Service s3service = new S3Service();
 		File file = new File("example.png");
 		s3service.putObject(file);
 	}
