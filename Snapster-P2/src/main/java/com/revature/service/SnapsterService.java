@@ -18,6 +18,7 @@ public class SnapsterService {
 
 	private Snapster snapsterRepo;
 	
+	@Autowired
 	public void setSnapsterRepository(SnapsterImpl snapsterImpl) {
 		this.snapsterRepo = snapsterImpl;
 	}
