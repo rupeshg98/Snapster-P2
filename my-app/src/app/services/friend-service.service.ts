@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-//import {Observable} from 'rxjs/internal/observable';
+import {Observable} from 'rxjs/internal/observable';
 import { map } from 'rxjs/operators';
 
 @Injectable({
@@ -13,6 +13,8 @@ export class FriendServiceService {
   
   validateLogin(username, password) {
     console.log(username, password);
+    return this.httpClient.post<any>('validateLogin', {username, password}) as Observable<Object[]>
+    /*
     return this.httpClient.post<any>('validateLogin', { username, password })
         .pipe(map(user => {
             // store user details and jwt token in local storage to keep user logged in between page refreshes
@@ -21,6 +23,7 @@ export class FriendServiceService {
             return user;
             
         }));
+        */
         
 }
 
