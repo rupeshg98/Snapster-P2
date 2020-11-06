@@ -12,7 +12,7 @@ import com.revature.service.SnapsterService;
 
 @CrossOrigin(origins = {"*"})
 public class SnapsterController {
-
+	@Autowired
 	SnapsterService snapsterService;
 
 	@PostMapping(path = "/validateLogin", consumes =MediaType.APPLICATION_JSON_VALUE)
