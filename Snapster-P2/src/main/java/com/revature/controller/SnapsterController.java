@@ -8,9 +8,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.revature.service.SnapsterService;
 
-@RestController("SnapsterController")
+@RestController("snapsterController")
 
-@CrossOrigin(origins = {"http://localhost:4200"})
+@CrossOrigin(origins = {"*"})
 public class SnapsterController {
 	@Autowired
 	private SnapsterService snapsterService;
