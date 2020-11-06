@@ -15,9 +15,9 @@ import com.revature.repository.SnapsterImpl;
 @Service("snapsterService")
 @Component
 public class SnapsterService {
-	
-	private Snapster snapsterRepo;
 	@Autowired
+	private Snapster snapsterRepo;
+	
 	public void setSnapsterRepository(SnapsterImpl snapsterImpl) {
 		this.snapsterRepo = snapsterImpl;
 	}
