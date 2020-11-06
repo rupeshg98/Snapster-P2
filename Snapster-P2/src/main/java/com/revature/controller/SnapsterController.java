@@ -18,8 +18,8 @@ public class SnapsterController {
 	SnapsterService snapsterService;
 
 	@GetMapping(path = "/login", consumes =MediaType.APPLICATION_JSON_VALUE)
-	public void validateLogin(@RequestBody String username, @RequestBody String password) {
-		System.out.println("SnapsterController Received Username " + username + " , Password: " + password);
+	public void validateLogin() {
+		System.out.println("SnapsterController Received Username ");
 		
 	}
 	
