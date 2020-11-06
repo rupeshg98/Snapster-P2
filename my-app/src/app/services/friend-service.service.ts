@@ -13,7 +13,7 @@ export class FriendServiceService {
   
   validateLogin(username, password) {
     console.log(username, password);
-    return this.httpClient.get<any>('http://ec2-18-217-143-242.us-east-2.compute.amazonaws.com:8085/Snapster-P2/login') as Observable<Object[]>
+    return this.httpClient.get<any>('http://ec2-18-217-143-242.us-east-2.compute.amazonaws.com:8085/Snapster-P2/validateLogin/login') as Observable<Object[]>
     /*
     return this.httpClient.post<any>('validateLogin', { username, password })
         .pipe(map(user => {
