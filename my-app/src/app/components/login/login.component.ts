@@ -33,7 +33,7 @@ export class LoginComponent implements OnInit {
         });
         
         // get return url from route parameters or default to '/'
-        this.returnUrl = 'http://localhost:4200/home';
+        this.returnUrl = '/home';
         
     }
 
