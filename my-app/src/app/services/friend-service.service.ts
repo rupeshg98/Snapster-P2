@@ -13,7 +13,7 @@ export class FriendServiceService {
   
   validateLogin(username, password) {
     console.log(username, password);
-    return this.httpClient.post<any>('validateLogin', {username, password}) as Observable<Object[]>
+    return this.httpClient.get<any>('validateLogin') as Observable<Object[]>
     /*
     return this.httpClient.post<any>('validateLogin', { username, password })
         .pipe(map(user => {
