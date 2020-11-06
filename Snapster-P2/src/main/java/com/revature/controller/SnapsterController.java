@@ -1,6 +1,6 @@
 package com.revature.controller;
 
-
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -12,11 +12,13 @@ import com.revature.service.SnapsterService;
 
 @CrossOrigin(origins = {"*"})
 public class SnapsterController {
-	SnapsterService snapsterService;
+	@Autowired
+	private SnapsterService snapsterService;
 
 	@PostMapping(path = "/validateLogin", consumes =MediaType.APPLICATION_JSON_VALUE)
 	public void validateLogin(String username, String password) {
 		System.out.println("SnapsterController Received Username " + username + " , Password: " + password);
+		snapsterService.validateUser(username, password);
 	}
 	
 
