@@ -27,7 +27,8 @@ public class Driver {
 		//driver.insertRequest();
 		//driver.deleteRequest();
 		//driver.insertRequest();
-		driver.getFriendRequests();
+		//driver.getFriendRequests();
+		driver.addImageToS3();
 		
 
 		
@@ -107,5 +108,10 @@ public class Driver {
 			System.out.println("Photo for : " + photo.getUsername() + ", location: " + photo.getLocation());
 		}
 
+	}
+	
+	public void addImageToS3() {
+		File file = new File("example.png");
+		s3service.putObject(file);
 	}
 }
