@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.revature.service.SnapsterService;
 
-@RestController(value = "snapsterController")
+@RestController(value = "SnapsterController")
 
 @CrossOrigin(origins = {"*"})
 public class SnapsterController {
