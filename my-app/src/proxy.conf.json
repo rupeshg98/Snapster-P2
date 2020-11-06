@@ -1,0 +1,6 @@
+{
+    "/validateLogin": {
+      "target": "http://ec2-18-217-143-242.us-east-2.compute.amazonaws.com:8085/Snapster-P2/",
+      "secure": false
+    }
+  }
