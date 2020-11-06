@@ -12,7 +12,7 @@ import com.revature.model.User;
 import com.revature.repository.Snapster;
 import com.revature.repository.SnapsterImpl;
 
-@Service("snapsterService")
+@Service(value = "snapsterService")
 @Component
 public class SnapsterService {
 	@Autowired
