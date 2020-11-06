@@ -12,12 +12,16 @@ export class FriendServiceService {
 
   
   validateLogin(username, password) {
+    console.log(username, password);
     return this.httpClient.post<any>('http://ec2-18-217-143-242.us-east-2.compute.amazonaws.com:8085/Snapster-P2/validateLogin', { username, password })
         .pipe(map(user => {
             // store user details and jwt token in local storage to keep user logged in between page refreshes
             localStorage.setItem('currentUser', JSON.stringify(user));
+           
             return user;
+            
         }));
+        
 }
 
 /*
