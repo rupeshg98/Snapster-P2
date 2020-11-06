@@ -12,13 +12,13 @@ import com.revature.service.SnapsterService;
 
 @CrossOrigin(origins = {"*"})
 public class SnapsterController {
-	@Autowired
-	private SnapsterService snapsterService;
+
+	SnapsterService snapsterService;
 
 	@PostMapping(path = "/validateLogin", consumes =MediaType.APPLICATION_JSON_VALUE)
 	public void validateLogin(String username, String password) {
 		System.out.println("SnapsterController Received Username " + username + " , Password: " + password);
-		snapsterService.validateUser(username, password);
+		
 	}
 	
 
