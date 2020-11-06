@@ -6,22 +6,22 @@ import { LoginComponent } from './components/login/login.component';
 import{UserHomeComponent} from './components/user-home/user-home.component'
 const routes: Routes = [
   {
-    path:"login",
-    component:LoginComponent
-  },
-  {
     path: "banner",
     component: BannerComponent
+  },
+  {
+    path:"login",
+    component:LoginComponent
   },
   {
     path:"friends",
     component: FriendsComponent
   },
-
   {
     path:"home",
     component: UserHomeComponent
-  }
+  },
+  { path: '',   redirectTo: '/login', pathMatch: 'full' }
 ];
 
 @NgModule({
