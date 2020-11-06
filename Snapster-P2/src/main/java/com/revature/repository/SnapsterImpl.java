@@ -12,7 +12,7 @@ import com.revature.model.FriendRequest;
 import com.revature.model.Photo;
 import com.revature.model.User;
 import com.revature.utility.HibernateSessionFactory;
-@Repository(value = "snapsterRepo")
+@Repository(value = "SnapsterRepo")
 public class SnapsterImpl implements Snapster{
 
 	public void insertUser(User user) {
