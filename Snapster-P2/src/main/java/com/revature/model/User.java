@@ -19,19 +19,19 @@ public class User implements Serializable {
 
 	@Id
 	@Column(name = "user_name")
-	String username;
+	String user_name;
 
 	@Column(name = "user_pass")
-	String password;
+	String user_pass;
 
 	@Column(name = "email")
 	String email;
 
 	@Column(name = "first_name")
-	String firstname;
+	String first_name;
 
 	@Column(name = "last_name")
-	String lastname;
+	String last_name;
 
 	@Column(name = "date")
 	Date date;
@@ -43,28 +43,28 @@ public class User implements Serializable {
 
 	public User(String username, String password, String email, String firstname, String lastname, Date date) {
 		super();
-		this.username = username;
-		this.password = password;
+		this.user_name = username;
+		this.user_pass = password;
 		this.email = email;
-		this.firstname = firstname;
-		this.lastname = lastname;
+		this.first_name = firstname;
+		this.last_name = lastname;
 		this.date = date;
 	}
 
 	public String getUsername() {
-		return username;
+		return user_name;
 	}
 
 	public void setUsername(String username) {
-		this.username = username;
+		this.user_name = username;
 	}
 
 	public String getPassword() {
-		return password;
+		return user_pass;
 	}
 
 	public void setPassword(String password) {
-		this.password = password;
+		this.user_pass = password;
 	}
 
 	public String getEmail() {
@@ -76,19 +76,19 @@ public class User implements Serializable {
 	}
 
 	public String getFirstname() {
-		return firstname;
+		return first_name;
 	}
 
 	public void setFirstname(String firstname) {
-		this.firstname = firstname;
+		this.first_name = firstname;
 	}
 
 	public String getLastname() {
-		return lastname;
+		return last_name;
 	}
 
 	public void setLastname(String lastname) {
-		this.lastname = lastname;
+		this.last_name = lastname;
 	}
 
 	public Date getDate() {
@@ -101,8 +101,8 @@ public class User implements Serializable {
 
 	@Override
 	public String toString() {
-		return "User [username=" + username + ", password=" + password + ", email=" + email + ", firstname=" + firstname
-				+ ", lastname=" + lastname + ", date=" + date + "]";
+		return "User [username=" + user_name + ", password=" + user_pass + ", email=" + email + ", firstname=" + first_name
+				+ ", lastname=" + last_name + ", date=" + date + "]";
 	}
 
 	@Override
@@ -111,10 +111,10 @@ public class User implements Serializable {
 		int result = 1;
 		result = prime * result + ((date == null) ? 0 : date.hashCode());
 		result = prime * result + ((email == null) ? 0 : email.hashCode());
-		result = prime * result + ((firstname == null) ? 0 : firstname.hashCode());
-		result = prime * result + ((lastname == null) ? 0 : lastname.hashCode());
-		result = prime * result + ((password == null) ? 0 : password.hashCode());
-		result = prime * result + ((username == null) ? 0 : username.hashCode());
+		result = prime * result + ((first_name == null) ? 0 : first_name.hashCode());
+		result = prime * result + ((last_name == null) ? 0 : last_name.hashCode());
+		result = prime * result + ((user_pass == null) ? 0 : user_pass.hashCode());
+		result = prime * result + ((user_name == null) ? 0 : user_name.hashCode());
 		return result;
 	}
 
@@ -137,25 +137,25 @@ public class User implements Serializable {
 				return false;
 		} else if (!email.equals(other.email))
 			return false;
-		if (firstname == null) {
-			if (other.firstname != null)
+		if (first_name == null) {
+			if (other.first_name != null)
 				return false;
-		} else if (!firstname.equals(other.firstname))
+		} else if (!first_name.equals(other.first_name))
 			return false;
-		if (lastname == null) {
-			if (other.lastname != null)
+		if (last_name == null) {
+			if (other.last_name != null)
 				return false;
-		} else if (!lastname.equals(other.lastname))
+		} else if (!last_name.equals(other.last_name))
 			return false;
-		if (password == null) {
-			if (other.password != null)
+		if (user_pass == null) {
+			if (other.user_pass != null)
 				return false;
-		} else if (!password.equals(other.password))
+		} else if (!user_pass.equals(other.user_pass))
 			return false;
-		if (username == null) {
-			if (other.username != null)
+		if (user_name == null) {
+			if (other.user_name != null)
 				return false;
-		} else if (!username.equals(other.username))
+		} else if (!user_name.equals(other.user_name))
 			return false;
 		return true;
 	}
