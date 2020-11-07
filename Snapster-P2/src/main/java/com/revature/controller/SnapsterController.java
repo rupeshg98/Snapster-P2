@@ -17,10 +17,12 @@ public class SnapsterController {
 	
 	SnapsterService snapsterService;
 
-	@GetMapping(path = "/login", produces=MediaType.ALL_VALUE)
+	@GetMapping(path = "/login", produces=MediaType.APPLICATION_JSON_VALUE)
 	public String validateLogin(@RequestParam("username") String username, @RequestParam("password") String password) {
 		System.out.println("SnapsterController Received Username " + username +", pwd: " + password);
-		return ("<html><body>Hello returned from Login</body></html>");
+		boolean isValidUser = snapsterService.validateUser(username, password);
+		
+		return ("{isValidUser:"+isValidUser + "}");
 	}
 
 	@GetMapping(path = "/loginaaa")
