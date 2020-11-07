@@ -1,1 +1,13 @@
-<p>user-home works!</p>
+<form [formGroup]="userHomeForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+        <button type="button" (click)="viewMyInfo()">View My Info</button>
+        <button type="button" (click)="viewMyPhotos()">View My Photos</button>
+        <button type="button" (click)="viewMyFriends()">View My Friends</button>
+        <button type="button" (click)="viewMyPendingFriendRequest()">View My Pending FriendRequests</button>
+        <button type="button" (click)="addFriend()">Add Friend</button>
+        <button type="button" (click)="viewMyFriendPhotos()">View My Friend Photos</button>
+    </div>
+</form>
+
+
+<div class = "details" #details></div>

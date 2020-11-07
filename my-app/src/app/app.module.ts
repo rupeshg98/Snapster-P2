@@ -13,6 +13,7 @@ import { AllPhotosComponent } from './components/all-photos/all-photos.component
 import { SideBarComponent } from './components/side-bar/side-bar.component';
 import { CreateAccountComponent } from './components/create-account/create-account.component';
 import { HttpClientModule } from '@angular/common/http';
+import { ViewMyDetailsComponent } from './components/view-my-details/view-my-details.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { HttpClientModule } from '@angular/common/http';
     SearchBarComponent,
     AllPhotosComponent,
     SideBarComponent,
-    CreateAccountComponent
+    CreateAccountComponent,
+    ViewMyDetailsComponent
   ],
   imports: [
     BrowserModule,
