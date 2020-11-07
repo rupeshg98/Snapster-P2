@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {HttpHeaders} from '@angular/common/http';
-import {HttpParams} from '@angular/common/http';
+//import {HttpHeaders} from '@angular/common/http';
+//import {HttpParams} from '@angular/common/http';
 import {Observable} from 'rxjs/internal/observable';
-import { map } from 'rxjs/operators';
+//import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -16,12 +16,14 @@ export class FriendServiceService {
   validateLogin(username, password) {
     console.log(username, password);
 
-    let params = new HttpParams();
-    params.set('username', username);
-    params.set('password', password);
+    // let params = new HttpParams();
+    // params.set('username', username);
+    // params.set('password', password);
     
     //return this._HttpClient.get(`${API_URL}/api/v1/data/logs`, { params: params })
-    return this.httpClient.get<any>('validateLogin', { params: params }) as Observable<Object[]>
+    //return this.httpClient.get<any>('validateLogin', { params: params }) as Observable<Object[]>
+    
+    return this.httpClient.get<any>('validateLogin') as Observable<Object[]>
     
     // let body = {
     //   username: username,
