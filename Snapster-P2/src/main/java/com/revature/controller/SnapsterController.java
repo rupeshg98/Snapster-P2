@@ -17,13 +17,13 @@ public class SnapsterController {
 	
 	SnapsterService snapsterService;
 
-//	@GetMapping(path = "/login", produces =MediaType.APPLICATION_JSON_VALUE)
-//	public String validateLogin(@RequestParam String username, @RequestParam String password) {
-//		System.out.println("SnapsterController Received Username " + username +", pwd: " + password);
-//		return ("<html><body>Hello returned from Login</body></html>");
-//	}
-
 	@GetMapping(path = "/login")
+	public String validateLogin(@RequestParam String username, @RequestParam String password) {
+		System.out.println("SnapsterController Received Username " + username +", pwd: " + password);
+		return ("<html><body>Hello returned from Login</body></html>");
+	}
+
+	@GetMapping(path = "/loginaaa")
 	public void validateLogin() {
 		System.out.println("SnapsterController Received Username ");
 		//return ("<html><body>Hello returned from Login</body></html>");
