@@ -54,8 +54,8 @@ export class LoginComponent implements OnInit {
         let responseData = this.friendService.validateLogin(this.f.username.value, this.f.password.value);
 
         console.log("Inside logincomponentts response Data: " + responseData);
-        this.router.navigate(["/home"]);
-        
+        //this.router.navigate(["/home"]);
+
             // .pipe(first())
             // .subscribe(
             //     data => {

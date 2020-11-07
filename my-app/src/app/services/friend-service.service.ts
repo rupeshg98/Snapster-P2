@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
+import{http} from '@angular/common/http';
 //import {HttpHeaders} from '@angular/common/http';
 import {HttpParams} from '@angular/common/http';
 import {Observable} from 'rxjs/internal/observable';
@@ -20,10 +21,12 @@ export class FriendServiceService {
   
     //return this._HttpClient.get(`${API_URL}/api/v1/data/logs`, { params: params })
     //return this.httpClient.get<any>('validateLogin', { params: myparams }) as Observable<Object[]>
-    let responseText = this.httpClient.get<any>('validateLogin', { params: myparams }).subscribe(responseData => console.log(responseData))
+    let responseText = this.httpClient.get('validateLogin', { params: myparams, observe: 'response'}).subscribe(
+          responseData => console.log(responseData.body.toString))
     console.log("Inside service ResponseText: " + responseText);
 
     return responseText;
+
     //return this.httpClient.get<any>('validateLogin') as Observable<Object[]>
     
     // let body = {
