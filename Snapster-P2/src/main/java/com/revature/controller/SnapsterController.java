@@ -17,7 +17,7 @@ public class SnapsterController {
 	
 	SnapsterService snapsterService;
 
-	@PostMapping(path = "/login", produces =MediaType.APPLICATION_JSON_VALUE)
+	@GetMapping(path = "/login", produces =MediaType.APPLICATION_JSON_VALUE)
 	public String validateLogin(@RequestParam String username, @RequestParam String password) {
 		System.out.println("SnapsterController Received Username " + username +", pwd: " + password);
 		return ("<html><body>Hello returned from Login</body></html>");

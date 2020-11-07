@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
+import {HttpHeaders} from '@angular/common/http';
+import {HttpParams} from '@angular/common/http';
 import {Observable} from 'rxjs/internal/observable';
 import { map } from 'rxjs/operators';
 
@@ -13,16 +15,38 @@ export class FriendServiceService {
   
   validateLogin(username, password) {
     console.log(username, password);
-    //return this.httpClient.get<any>('validateLogin') as Observable<Object[]>
+
+    let params = new HttpParams();
+    params.set('username', username);
+    params.set('password', password);
     
-    return this.httpClient.post<any>('validateLogin', { username, password })
-        .pipe(map(user => {
-            // store user details and jwt token in local storage to keep user logged in between page refreshes
-            localStorage.setItem('currentUser', JSON.stringify(user));
-            console.log(user);
-            return user;
+    //return this._HttpClient.get(`${API_URL}/api/v1/data/logs`, { params: params })
+    return this.httpClient.get<any>('validateLogin', { params: params }) as Observable<Object[]>
+    
+    // let body = {
+    //   username: username,
+    //   password: password
+    // };
+
+    // let headers = new HttpHeaders();
+    // headers = headers.set("Content-Type", "application/x-www-form-urlencoded");
+
+
+    // return this.httpClient.post('validateLogin', body, {
+    //   headers: headers,
+    // })
+    //   .pipe(resp => {
+    //       console.log("response %o, ", resp);
+    //   });
+
+    // return this.httpClient.post<any>('validateLogin', body, {headers: headers})
+    //     .pipe(map(user => {
+    //         // store user details and jwt token in local storage to keep user logged in between page refreshes
+    //         //localStorage.setItem('currentUser', JSON.stringify(user));
+    //         console.log(user);
+    //         return user;
             
-        }));
+    //     }));
         
         
 }
