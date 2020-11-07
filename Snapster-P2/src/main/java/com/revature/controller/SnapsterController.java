@@ -1,12 +1,12 @@
 package com.revature.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.revature.model.User;
 import com.revature.service.SnapsterService;
 
 @RestController(value = "SnapsterController")
@@ -24,10 +24,12 @@ public class SnapsterController {
 		return ("{isValidUser:"+isValidUser + "}");
 	}
 
-	@GetMapping(path = "/loginaaa")
-	public void validateLogin() {
-		System.out.println("SnapsterController Received Username ");
-		//return ("<html><body>Hello returned from Login</body></html>");
+	@GetMapping(path = "/viewMyInfo", produces=MediaType.APPLICATION_JSON_VALUE)
+	public User viewMyinfo(@RequestParam("username") String username) {
+		User user = snapsterService.getUser(username);
+		user.setPassword("");
+		return user;
+		
 	}
 	@GetMapping(path = "/loginn", produces=MediaType.TEXT_HTML_VALUE)
 	public void validateLoginn() {

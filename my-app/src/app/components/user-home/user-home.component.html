@@ -9,5 +9,9 @@
     </div>
 </form>
 
-
-<div class = "details" #details></div>
+<div *ngFor = "let u of users">
+    <p>{{u.user_name}}</p>
+    <p>{{u.email}}</p>
+    <p>{{u.first_name}}</p>
+    <p>{{u.last_name}}</p>
+</div>

@@ -26,24 +26,6 @@ export class FriendServiceService {
 
     return responseText;
 
-    //return this.httpClient.get<any>('validateLogin') as Observable<Object[]>
-    
-    // let body = {
-    //   username: username,
-    //   password: password
-    // };
-
-    // let headers = new HttpHeaders();
-    // headers = headers.set("Content-Type", "application/x-www-form-urlencoded");
-
-
-    // return this.httpClient.post('validateLogin', body, {
-    //   headers: headers,
-    // })
-    //   .pipe(resp => {
-    //       console.log("response %o, ", resp);
-    //   });
-
     // return this.httpClient.post<any>('validateLogin', body, {headers: headers})
     //     .pipe(map(user => {
     //         // store user details and jwt token in local storage to keep user logged in between page refreshes
@@ -54,9 +36,24 @@ export class FriendServiceService {
     //     }));
   }
 
-/*
-  validateLogin(){
-    return this.httpClient.get('http://ec2-13-58-173-187.us-east-2.compute.amazonaws.com:8085/Snapster-P2/validateLogin') as Observable<Object[]>
+
+  viewMyInfo(username) {
+    console.log(username);
+
+    let myparams = new HttpParams().set('username', username);
+
+    //return this._HttpClient.get(`${API_URL}/api/v1/data/logs`, { params: params })
+    //return this.httpClient.get<any>('validateLogin', { params: myparams }) as Observable<Object[]>
+    return this.httpClient.get('viewMyInfo', { params: myparams}) as Observable<Object[]>
+    //console.log("Inside service ResponseText: " + users);
+
+    // return this.httpClient.post<any>('validateLogin', body, {headers: headers})
+    //     .pipe(map(user => {
+    //         // store user details and jwt token in local storage to keep user logged in between page refreshes
+    //         //localStorage.setItem('currentUser', JSON.stringify(user));
+    //         console.log(user);
+    //         return user;
+            
+    //     }));
   }
-*/
 }

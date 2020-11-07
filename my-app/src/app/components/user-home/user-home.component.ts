@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ContentChildren } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import {FriendServiceService} from 'src/app/services/friend-service.service';
 import { Router, ActivatedRoute } from '@angular/router';
+import {ViewMyDetailsComponent} from 'src/app/components/view-my-details/view-my-details.component';
 
 import { first } from 'rxjs/operators';
 @Component({
@@ -10,6 +11,8 @@ import { first } from 'rxjs/operators';
   styleUrls: ['./user-home.component.css']
 })
 export class UserHomeComponent implements OnInit {
+
+  @ContentChildren(ViewMyDetailsComponent)
 
   userHomeForm: FormGroup;
   loading = false;
@@ -34,13 +37,23 @@ export class UserHomeComponent implements OnInit {
       this.returnUrl = '/home';
       
   }
-
+  users:Object[]
   // convenience getter for easy access to form fields
   get f() { return this.userHomeForm.controls; }
 
   viewMyInfo() {
     console.log("viewMyInfo Clicked");
+    this.friendService.viewMyInfo("rupesh").subscribe(
+      (data) => {
+        console.log(data)
+        this.users = data;
+      },
+      () => {
+        console.log("sorry something went wrong")
+      }
+    )
 
+    
   }
 
   viewMyPhotos(){
@@ -78,7 +91,7 @@ export class UserHomeComponent implements OnInit {
       //let responseData = this.friendService.validateLogin(this.f.username.value, this.f.password.value);
 
       //console.log("Inside logincomponentts response Data: " + responseData);
-      //this.router.navigate(["/home"]);
+      this.router.navigate(["/home"]);
 
           // .pipe(first())
           // .subscribe(
