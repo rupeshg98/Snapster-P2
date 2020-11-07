@@ -37,7 +37,7 @@ export class UserHomeComponent implements OnInit {
       this.returnUrl = '/home';
       
   }
-  users:Object[]
+  users:Object
   // convenience getter for easy access to form fields
   get f() { return this.userHomeForm.controls; }
 
