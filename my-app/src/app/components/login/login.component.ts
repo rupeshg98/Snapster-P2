@@ -50,6 +50,7 @@ export class LoginComponent implements OnInit {
         this.loading = true;
         
         let responseData = this.friendService.validateLogin(this.f.username.value, this.f.password.value);
+        
         console.log("Inside logincomponentts response Data: " + responseData);
 
         this.router.navigate(["/home"]);
