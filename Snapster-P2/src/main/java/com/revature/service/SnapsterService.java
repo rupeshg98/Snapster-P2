@@ -15,11 +15,10 @@ import com.revature.repository.SnapsterImpl;
 
 public class SnapsterService {
 
-	@Autowired
 	private Snapster snapsterRepo;
 	
 	@Autowired
-	public void setSnapsterRepository(SnapsterImpl snapsterImpl) {
+	public void setSnapster(SnapsterImpl snapsterImpl) {
 		this.snapsterRepo = snapsterImpl;
 	}
 
