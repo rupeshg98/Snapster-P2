@@ -41,8 +41,8 @@ public class SnapsterImpl implements Snapster{
 		try {
 			s = HibernateSessionFactory.getSession();
 			tx = s.beginTransaction();
-			user = (User) s.get(User.class, username);
-			
+			user = s.get(User.class, username);
+		
 			if (user == null ) {
 				System.out.println ("Inside Impl user is NULL");
 			}
