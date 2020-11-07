@@ -21,7 +21,7 @@ export class FriendServiceService {
     //return this._HttpClient.get(`${API_URL}/api/v1/data/logs`, { params: params })
     //return this.httpClient.get<any>('validateLogin', { params: myparams }) as Observable<Object[]>
     let responseText = this.httpClient.get('validateLogin', { params: myparams, observe: 'response'}).subscribe(
-          responseData => console.log(responseData.body.toString))
+          responseData => console.log(JSON.stringify(responseData.body)))
     console.log("Inside service ResponseText: " + responseText);
 
     return responseText;
