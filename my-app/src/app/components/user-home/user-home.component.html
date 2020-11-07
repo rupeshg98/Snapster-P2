@@ -7,11 +7,14 @@
         <button type="button" (click)="addFriend()">Add Friend</button>
         <button type="button" (click)="viewMyFriendPhotos()">View My Friend Photos</button>
     </div>
+
 </form>
 
 <div *ngFor = "let u of users">
-    <p>{{u.user_name}}</p>
-    <p>{{u.email}}</p>
-    <p>{{u.first_name}}</p>
-    <p>{{u.last_name}}</p>
+    <table>
+        <td>{{u.username}}</td>
+        <td>{{u.email}}</td>
+        <td>{{u.firstname}}</td>
+        <td>{{u.lastname}}</td>
+    </table>
 </div>

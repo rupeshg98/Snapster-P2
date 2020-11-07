@@ -44,7 +44,7 @@ export class FriendServiceService {
 
     //return this._HttpClient.get(`${API_URL}/api/v1/data/logs`, { params: params })
     //return this.httpClient.get<any>('validateLogin', { params: myparams }) as Observable<Object[]>
-    return this.httpClient.get('viewMyInfo', { params: myparams}) as Observable<Object>
+    return this.httpClient.get('viewMyInfo', { params: myparams}) as Observable<Object[]>
     //console.log("Inside service ResponseText: " + users);
 
     // return this.httpClient.post<any>('validateLogin', body, {headers: headers})
