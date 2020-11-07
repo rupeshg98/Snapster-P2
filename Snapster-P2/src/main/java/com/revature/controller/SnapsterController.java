@@ -23,6 +23,12 @@ public class SnapsterController {
 		
 	}
 	
+	@GetMapping(path = "/loginn", produces =MediaType.APPLICATION_JSON_VALUE)
+	public void validateLoginn() {
+		System.out.println("SnapsterController Received Username ");
+		
+	}
+	
 
 }
 
