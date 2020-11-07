@@ -23,7 +23,7 @@ public class SnapsterController {
 //		return ("<html><body>Hello returned from Login</body></html>");
 //	}
 
-	@GetMapping(path = "/login", produces =MediaType.APPLICATION_JSON_VALUE)
+	@GetMapping(path = "/login")
 	public void validateLogin() {
 		System.out.println("SnapsterController Received Username ");
 		//return ("<html><body>Hello returned from Login</body></html>");
