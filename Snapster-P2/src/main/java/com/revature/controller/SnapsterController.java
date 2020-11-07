@@ -14,8 +14,7 @@ import com.revature.service.SnapsterService;
 @CrossOrigin(origins = {"http://localhost:4200"}, allowedHeaders="*")
 
 public class SnapsterController {
-	@Autowired
-	SnapsterService snapsterService;// = new SnapsterService();
+	SnapsterService snapsterService = new SnapsterService();
 
 	@GetMapping(path = "/login", produces=MediaType.APPLICATION_JSON_VALUE)
 	public String validateLogin(@RequestParam("username") String username, @RequestParam("password") String password) {

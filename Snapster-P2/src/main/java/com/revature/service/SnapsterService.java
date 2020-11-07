@@ -15,6 +15,7 @@ import com.revature.repository.SnapsterImpl;
 
 public class SnapsterService {
 
+	@Autowired
 	private Snapster snapsterRepo;
 	
 	@Autowired
