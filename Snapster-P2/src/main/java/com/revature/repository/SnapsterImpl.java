@@ -34,7 +34,7 @@ public class SnapsterImpl implements Snapster{
 	}
 
 	public User getUser(String username) {
-
+		System.out.println("Inside Impl getUser: username: " + username);
 		Session s = null;
 		Transaction tx = null;
 		User user = null;

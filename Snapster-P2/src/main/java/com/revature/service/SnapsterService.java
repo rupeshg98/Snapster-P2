@@ -34,7 +34,11 @@ public class SnapsterService {
 		if (user != null) {
 			if (pwd != null && pwd.equals(user.getPassword())) {
 				return true;
+			} else {
+				System.out.println ("Inside Service validateUser: pwd received: " + pwd + ", dbpwd: " + user.getPassword());
 			}
+		} else {
+			System.out.println ("Inside Service validateUser: user returned NULL");
 		}
 		return false;
 	}
