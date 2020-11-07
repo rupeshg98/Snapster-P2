@@ -25,14 +25,14 @@ public class Driver {
 		driver.s3service = ctx.getBean("s3service",S3Service.class);
 		
 		// driver.insertUser();
-		// driver.validateUser();
+		driver.validateUser();
 		//driver.insertPhoto();
 		//driver.getPhotos();
 		//driver.insertRequest();
 		//driver.deleteRequest();
 		//driver.insertRequest();
 		//driver.getFriendRequests();
-		driver.addImageToS3();
+		//driver.addImageToS3();
 		
 	}
 

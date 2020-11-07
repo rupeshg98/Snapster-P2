@@ -15,7 +15,7 @@ import com.revature.service.SnapsterService;
 
 public class SnapsterController {
 	
-	SnapsterService snapsterService;
+	SnapsterService snapsterService = new SnapsterService();
 
 	@GetMapping(path = "/login", produces=MediaType.APPLICATION_JSON_VALUE)
 	public String validateLogin(@RequestParam("username") String username, @RequestParam("password") String password) {
