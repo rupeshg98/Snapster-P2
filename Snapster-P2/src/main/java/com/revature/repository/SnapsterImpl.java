@@ -45,6 +45,8 @@ public class SnapsterImpl implements Snapster{
 			
 			if (user == null ) {
 				System.out.println ("Inside Impl user is NULL");
+			} else {
+				System.out.println ("Inside Impl user is NOT NULL : " + user.toString());
 			}
 			tx.commit();
 		} catch (HibernateException e) {
