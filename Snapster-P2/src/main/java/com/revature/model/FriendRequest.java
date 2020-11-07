@@ -61,5 +61,38 @@ public class FriendRequest implements Serializable{
 	public String toString() {
 		return "FriendRequest [sender=" + sender + ", receiver=" + receiver + ", isApproved=" + isApproved + "]";
 	}
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + (isApproved ? 1231 : 1237);
+		result = prime * result + ((receiver == null) ? 0 : receiver.hashCode());
+		result = prime * result + ((sender == null) ? 0 : sender.hashCode());
+		return result;
+	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		FriendRequest other = (FriendRequest) obj;
+		if (isApproved != other.isApproved)
+			return false;
+		if (receiver == null) {
+			if (other.receiver != null)
+				return false;
+		} else if (!receiver.equals(other.receiver))
+			return false;
+		if (sender == null) {
+			if (other.sender != null)
+				return false;
+		} else if (!sender.equals(other.sender))
+			return false;
+		return true;
+	}
 
 }
