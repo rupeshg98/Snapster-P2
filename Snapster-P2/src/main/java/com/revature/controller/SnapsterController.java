@@ -24,7 +24,7 @@ public class SnapsterController {
 		System.out.println("SnapsterController Received Username " + username + ", pwd: " + password);
 		boolean isValidUser = snapsterService.validateUser(username, password);
 
-		return ("{isValidUser:" + isValidUser + "}");
+		return ("{\"isValidUser\":" + isValidUser + "}");
 	}
 
 	@GetMapping(path = "/viewMyInfo", produces = MediaType.APPLICATION_JSON_VALUE)
