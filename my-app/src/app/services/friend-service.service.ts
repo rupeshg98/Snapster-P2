@@ -13,17 +13,17 @@ export class FriendServiceService {
   
   validateLogin(username, password) {
     console.log(username, password);
-    return this.httpClient.get<any>('validateLogin') as Observable<Object[]>
-    /*
+    //return this.httpClient.get<any>('validateLogin') as Observable<Object[]>
+    
     return this.httpClient.post<any>('validateLogin', { username, password })
         .pipe(map(user => {
             // store user details and jwt token in local storage to keep user logged in between page refreshes
             localStorage.setItem('currentUser', JSON.stringify(user));
-           
+            console.log(user);
             return user;
             
         }));
-        */
+        
         
 }
 
