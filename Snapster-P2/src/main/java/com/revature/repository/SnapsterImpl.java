@@ -1,6 +1,6 @@
 package com.revature.repository;
 
-import java.util.ArrayList; 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.hibernate.HibernateException;
@@ -12,8 +12,9 @@ import com.revature.model.FriendRequest;
 import com.revature.model.Photo;
 import com.revature.model.User;
 import com.revature.utility.HibernateSessionFactory;
+
 @Repository(value = "SnapsterRepo")
-public class SnapsterImpl implements Snapster{
+public class SnapsterImpl implements Snapster {
 
 	public void insertUser(User user) {
 
@@ -41,12 +42,24 @@ public class SnapsterImpl implements Snapster{
 		try {
 			s = HibernateSessionFactory.getSession();
 			tx = s.beginTransaction();
-			user = s.load(User.class, username);
-			
-			if (user == null ) {
-				System.out.println ("Inside Impl user is NULL");
+//			user = s.load(User.class, username);
+//			
+//			if (user == null ) {
+//				System.out.println ("Inside Impl user is NULL");
+//			} else {
+//				System.out.println ("Inside Impl user is NOT NULL : " + user.toString());
+//			}
+
+			List<User> users = s.createQuery("FROM User WHERE user_name = :xyz").setParameter("xyz", username)
+					.getResultList();
+
+			if (users != null) {
+				for (int i = 0; i < users.size(); i++) {
+					user = users.get(i);
+					System.out.println("Impl Loop User for : " + user.getUsername() + ", pwd: " + user.getPassword());
+				}
 			} else {
-				System.out.println ("Inside Impl user is NOT NULL : " + user.toString());
+				System.out.println ("Inside Impl user is NULL");
 			}
 			tx.commit();
 		} catch (HibernateException e) {
@@ -106,7 +119,7 @@ public class SnapsterImpl implements Snapster{
 		}
 		return photos;
 	}
-	
+
 	public void insertFriendRequest(FriendRequest req) {
 
 		Session s = null;
@@ -124,7 +137,7 @@ public class SnapsterImpl implements Snapster{
 			s.close();
 		}
 	}
-	
+
 	public void approveRequest(FriendRequest req) {
 		Session s = null;
 		Transaction tx = null;
@@ -132,7 +145,7 @@ public class SnapsterImpl implements Snapster{
 		try {
 			s = HibernateSessionFactory.getSession();
 			tx = s.beginTransaction();
-			
+
 			s.update(req);
 			tx.commit();
 		} catch (HibernateException e) {
@@ -140,9 +153,9 @@ public class SnapsterImpl implements Snapster{
 			tx.rollback();
 		} finally {
 			s.close();
-		}	
+		}
 	}
-	
+
 	public void deleteRequest(FriendRequest req) {
 
 		Session s = null;
@@ -160,6 +173,7 @@ public class SnapsterImpl implements Snapster{
 			s.close();
 		}
 	}
+
 	public ArrayList<FriendRequest> getFriendRequests(String receiver) {
 		System.out.println("In repository getFriendRequests");
 		Session s = null;
@@ -180,7 +194,7 @@ public class SnapsterImpl implements Snapster{
 		} finally {
 			s.close();
 		}
-		
+
 		return friends;
 	}
 }
