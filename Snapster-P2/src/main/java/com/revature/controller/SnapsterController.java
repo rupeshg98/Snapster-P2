@@ -17,7 +17,7 @@ public class SnapsterController {
 	
 	SnapsterService snapsterService;
 
-	@GetMapping(path = "/login")
+	@GetMapping(path = "/login", produces=MediaType.TEXT_HTML_VALUE)
 	public String validateLogin(@RequestParam("username") String username, @RequestParam("password") String password) {
 		System.out.println("SnapsterController Received Username " + username +", pwd: " + password);
 		return ("<html><body>Hello returned from Login</body></html>");
@@ -28,7 +28,7 @@ public class SnapsterController {
 		System.out.println("SnapsterController Received Username ");
 		//return ("<html><body>Hello returned from Login</body></html>");
 	}
-	@GetMapping(path = "/loginn", produces =MediaType.APPLICATION_JSON_VALUE)
+	@GetMapping(path = "/loginn", produces=MediaType.TEXT_HTML_VALUE)
 	public void validateLoginn() {
 		System.out.println("SnapsterController Received Username ");
 		

@@ -7,16 +7,6 @@
       },
       "changeOrigin": true,
       "logLevel": "debug"
-    },
-
-    "/home": {
-        "target": "http://18.217.143.242:8085/Snapster-P2/login",
-        "secure": false,
-        "pathRewrite": {
-          "^/home": ""
-        },
-        "changeOrigin": true,
-        "logLevel": "debug"
-      }
+    }
 
   }

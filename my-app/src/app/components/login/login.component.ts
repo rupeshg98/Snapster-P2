@@ -51,16 +51,21 @@ export class LoginComponent implements OnInit {
 
         this.loading = true;
         
-        this.friendService.validateLogin(this.f.username.value, this.f.password.value)
-            .pipe(first())
-            .subscribe(
-                data => {
-                    this.router.navigate(["/home"]);
-                },
-                error => {
+        let responseData = this.friendService.validateLogin(this.f.username.value, this.f.password.value);
+
+        console.log("Inside logincomponentts response Data: " + responseData);
+        this.router.navigate(["/home"]);
+        
+            // .pipe(first())
+            // .subscribe(
+            //     data => {
+            //         console.log("received back: " + data);
+            //         this.router.navigate(["/home"]);
+            //     },
+            //     error => {
                    
-                    this.loading = false;
-                });
+            //         this.loading = false;
+            //     });
                
                 
     }
