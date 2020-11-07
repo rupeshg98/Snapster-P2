@@ -23,7 +23,9 @@ public class HibernateSessionFactory {
 					.setProperty("hibernate.connection.password", "password")
 					.buildSessionFactory();
 		}
-		
+		if (sessionFactory == null) {
+			System.out.println ("HybernateSessionFactory sessionFactory is NULL");
+		}
 		return sessionFactory.getCurrentSession();
 	}
 
