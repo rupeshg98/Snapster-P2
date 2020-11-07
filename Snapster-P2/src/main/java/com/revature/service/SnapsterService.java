@@ -2,7 +2,6 @@ package com.revature.service;
 
 import java.util.ArrayList;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.revature.model.FriendRequest;
@@ -15,12 +14,12 @@ import com.revature.repository.SnapsterImpl;
 
 public class SnapsterService {
 
-	private Snapster snapsterRepo;
+	private Snapster snapsterRepo = new SnapsterImpl();
 	
-	@Autowired
-	public void setSnapster(SnapsterImpl snapsterImpl) {
-		this.snapsterRepo = snapsterImpl;
-	}
+//	@Autowired
+//	public void setSnapster(SnapsterImpl snapsterImpl) {
+//		this.snapsterRepo = snapsterImpl;
+//	}
 
 	public void insertUser(User user) {
 		snapsterRepo.insertUser(user);
