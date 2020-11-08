@@ -35,4 +35,11 @@ class SnapsterControllerTest {
 		mockController.viewMyInfo(username);
 		verify(mockController).viewMyInfo(username);
 	}
+	
+	@Test
+	void testFailViewMyInfo() {
+		String username = "fakename";
+		mockController.viewMyInfo(username);
+		verify(mockController).viewMyInfo(username);
+	}
 }
