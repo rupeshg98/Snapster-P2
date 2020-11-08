@@ -25,7 +25,7 @@ public class Driver {
 		driver.s3service = ctx.getBean("s3service",S3Service.class);
 		
 		// driver.insertUser();
-		driver.validateUser();
+		//driver.validateUser();
 		//driver.insertPhoto();
 		//driver.getPhotos();
 		//driver.insertRequest();
@@ -33,6 +33,7 @@ public class Driver {
 		//driver.insertRequest();
 		//driver.getFriendRequests();
 		//driver.addImageToS3();
+		driver.getAllMyFriends();
 		
 	}
 
@@ -120,4 +121,16 @@ public class Driver {
 
 		s3service.putObject(file);
 	}
+	
+	public void getAllMyFriends() {
+
+		ArrayList<User> users = service.getAllMyFriends("user1");
+
+		System.out.println("No.of Users: " + users.size());
+		for (User user : users) {
+			System.out.println("Friend : " + user.getUsername() + ", FirstName: " + user.getFirstname());
+		}
+
+	}
+	
 }
