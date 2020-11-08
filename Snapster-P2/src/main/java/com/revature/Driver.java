@@ -29,7 +29,7 @@ public class Driver {
 		// driver.insertUser();
 		//driver.validateUser();
 		//driver.insertPhoto();
-		driver.getPhotos();
+		//driver.getPhotos();
 		//driver.insertRequest();
 		//driver.deleteRequest();
 		//driver.insertRequest();
@@ -37,7 +37,7 @@ public class Driver {
 		//driver.addImageToS3();
 		//driver.getAllMyFriends();
 		//driver.getMyPendingFriendRequests();
-		//driver.uploadImageFullProcess();
+		driver.uploadImageFullProcess();
 		//driver.getAllUserPosts();
 	}
 
@@ -147,7 +147,7 @@ public class Driver {
 	}
 	public void uploadImageFullProcess() {
 		//user uploads photo
-		File image = new File("example.png");
+		File image = new File("Receipt1.PNG");
 		//server-side validation occurs
 		
 		//Photo object is created with username, new filename, and date
