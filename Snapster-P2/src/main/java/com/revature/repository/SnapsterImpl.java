@@ -91,36 +91,6 @@ public class SnapsterImpl implements Snapster {
 		}
 	}
 
-	public ArrayList<Photo> getPhotos(String username) {
-
-		Session s = null;
-		Transaction tx = null;
-		ArrayList<Photo> photos = new ArrayList<Photo>();
-
-		try {
-			s = HibernateSessionFactory.getSession();
-			tx = s.beginTransaction();
-
-			List<Photo> photos2 = s.createQuery("FROM Photo WHERE username = :xyz").setParameter("xyz", username)
-					.getResultList();
-
-//			for (int i = 0; i < photos2.size(); i++) {
-//				Photo photo = photos2.get(i);
-//				System.out
-//						.println("Impl Loop Photo for : " + photo.getUsername() + ", location: " + photo.getLocation());
-//			}
-
-			photos = new ArrayList<Photo>(photos2);
-
-			tx.commit();
-		} catch (HibernateException e) {
-			e.printStackTrace();
-			tx.rollback();
-		} finally {
-			s.close();
-		}
-		return photos;
-	}
 
 	public boolean insertFriendRequest(FriendRequest req) {
 
@@ -362,6 +332,46 @@ public class SnapsterImpl implements Snapster {
 			s.close();
 		}
 		return userPosts;
+	}
+	
+	public ArrayList<Photo> getPhotos(String username, boolean includeFriends) {
+
+		Session s = null;
+		Transaction tx = null;
+		ArrayList<Photo> userPhotos = new ArrayList<Photo>();
+		
+		try {
+		    String query = "";
+		    if (includeFriends) {
+		    	query = "select * from photos where username in (" +
+			    " select f.receiver as username from friendrequests as f where sender=:xyz and approval = true "+
+			    " union all " +
+			    " select f.sender as username from friendrequests as f where receiver=:xyz and approval = true " +
+			    " union select :xyz as username" + 
+			    " ) " +
+			    " order by created_date ";
+		    } else {
+		    	query = "select * from photos where username=:xyz order by created_date ";
+		    }
+		    
+			s = HibernateSessionFactory.getSession();
+			tx = s.beginTransaction();
+
+			SQLQuery<Photo> sqlQuery = s.createSQLQuery(query);
+			sqlQuery.addEntity(Photo.class);
+			sqlQuery.setParameter("xyz", username);
+			List<Photo> results = sqlQuery.list();
+
+			userPhotos.addAll(results);
+
+			tx.commit();
+		} catch (HibernateException e) {
+			e.printStackTrace();
+			tx.rollback();
+		} finally {
+			s.close();
+		}
+		return userPhotos;
 	}
 
 }

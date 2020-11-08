@@ -11,7 +11,7 @@ public interface Snapster {
 	public void insertUser(User user);
 	public User getUser(String username);
 	public void insertPhoto(Photo photo);
-	public ArrayList<Photo> getPhotos(String username);
+	public ArrayList<Photo> getPhotos(String username, boolean includeFriends);
 	public boolean insertFriendRequest(FriendRequest req);
 	public boolean approveRequest(FriendRequest req);
 	public boolean deleteRequest(FriendRequest req);

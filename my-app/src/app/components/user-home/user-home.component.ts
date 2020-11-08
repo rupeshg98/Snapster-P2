@@ -21,7 +21,7 @@ export class UserHomeComponent implements OnInit {
   submitted = false;
   returnUrl: string;
 
-  users:Object[]
+  myProfile:Object[]
   myFriends:Object[]
   myPendingFriends:Object[]
   requestFriendList:Object[]
@@ -40,7 +40,7 @@ export class UserHomeComponent implements OnInit {
   }
 
   clearObjects(){
-    this.users = [];
+    this.myProfile = [];
     this.myFriends = [];
     this.myPendingFriends = [];
     this.requestFriendList = [];
@@ -82,8 +82,8 @@ export class UserHomeComponent implements OnInit {
       (data) => {
         console.log(data)
         this.clearObjects();
-        this.getPostMessages(false);
-        this.users = data;
+        //this.getPostMessages(false);
+        this.myProfile = data;
       },
       () => {
         console.log("sorry something went wrong")
@@ -97,10 +97,7 @@ export class UserHomeComponent implements OnInit {
     this.friendService.viewMyPhotos(currentUser).subscribe(
       (data) => {
         console.log(data)
-        this.users = [];
-        this.myFriends = [];
-        this.myPendingFriends = [];
-        this.requestFriendList=[];
+        this.clearObjects();
         this.myPhotos=data;
       },
       () => {
@@ -241,6 +238,11 @@ export class UserHomeComponent implements OnInit {
       (data) => {
         console.log(data)
         this.clearObjects();
+        for (let i=0; i<data.length; i++) {
+          let dateStr = data[i]['senttime'];
+          let dataValue = new Date(parseInt(dateStr));
+          data[i]['senttime'] = dataValue
+        }
         if (includeFriends == "true"){
           this.allPosts = data;
         } else {

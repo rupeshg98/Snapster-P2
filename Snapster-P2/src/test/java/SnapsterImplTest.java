@@ -46,14 +46,14 @@ class SnapsterImplTest {
 	
 	@Test
 	void testGetPhotos() {
-		List<Photo> photos = mockRepo.getPhotos("rupesh");
+		List<Photo> photos = mockRepo.getPhotos("rupesh", false);
 		if(photos != null)
 			assert(true);
 	}
 	
 	@Test
 	void testFailGetPhotos() {
-		List<Photo> photos = mockRepo.getPhotos("fakename");
+		List<Photo> photos = mockRepo.getPhotos("fakename", false);
 		if(photos == null)
 			assert(true);
 	}

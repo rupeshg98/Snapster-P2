@@ -91,17 +91,26 @@ public class SnapsterController {
 		return snapsterService.deleteRequest(request);
 	}
 
-	@GetMapping(path = "/getMyPhotos", produces = MediaType.APPLICATION_JSON_VALUE)
-	public List<Photo> getMyPhotos(@RequestParam("username") String username) {
-		ArrayList<Photo> photos = snapsterService.getPhotos(username);
+	
+	@GetMapping(path = "/getPhotos", produces = MediaType.APPLICATION_JSON_VALUE)
+	public List<Photo> getMyPhotos(@RequestParam("username") String username,
+			@RequestParam("includeFriends") String includeFriends) {
+		ArrayList<Photo> photos = null;
+		if (includeFriends.equals("true")) {
+			photos = snapsterService.getPhotos(username, true);
+		} else {
+			photos = snapsterService.getPhotos(username, false);
+		}
 		if (photos == null) {
 			photos = new ArrayList<Photo>();
 		}
 		return photos;
+		
 	}
+	
 
 	@GetMapping(path = "/addPhoto", produces = MediaType.APPLICATION_JSON_VALUE)
-	public void addPhoto(@RequestParam("file") File file, @RequestParam("username") String username) {
+	public void addPhoto(@RequestParam("file") File file, @RequestParam("caption")String caption, @RequestParam("username") String username) {
 		// TODO server-side validation here
 		String uuid = UuidCreator.getTimeOrdered().toString();
 		Photo photo = new Photo("user1", uuid, new Date());

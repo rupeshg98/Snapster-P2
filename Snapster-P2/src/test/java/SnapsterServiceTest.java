@@ -62,14 +62,14 @@ class SnapsterServiceTest {
 
 	@Test
 	void testGetPhotos() {
-		List<Photo> photos = mockService.getPhotos("rupesh");
+		List<Photo> photos = mockService.getPhotos("rupesh", false);
 		if(photos != null)
 			assert(true);
 	}
 	
 	@Test
 	void testFailGetPhotos() {
-		List<Photo> photos = mockService.getPhotos("fakename");
+		List<Photo> photos = mockService.getPhotos("fakename", false);
 		if(photos == null)
 			assert(true);
 	}

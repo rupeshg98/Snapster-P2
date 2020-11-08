@@ -23,11 +23,13 @@ public class Photo implements Serializable{
 	@Id
 	@Column(name = "filename")
 	String filename;
+	@Column(name = "caption")
+	String caption;
 	@Column(name = "username")
 	String username;
 
 	@Column(name = "created_date")
-	Date createdDate;
+	Date created_date;
 
 	public Photo() {
 		super();
@@ -37,7 +39,7 @@ public class Photo implements Serializable{
 		super();
 		this.username = username;
 		this.filename = filename;
-		this.createdDate = createdDate;
+		this.created_date = createdDate;
 	}
 
 	public String getUsername() {
@@ -57,23 +59,27 @@ public class Photo implements Serializable{
 	}
 
 	public Date getCreatedDate() {
-		return createdDate;
+		return created_date;
 	}
 
 	public void setCreatedDate(Date createdDate) {
-		this.createdDate = createdDate;
+		this.created_date = createdDate;
 	}
 
-	@Override
-	public String toString() {
-		return "Photo [username=" + username + ", filename=" + filename + ", createdDate=" + createdDate + "]";
+	public String getCaption() {
+		return caption;
+	}
+
+	public void setCaption(String caption) {
+		this.caption = caption;
 	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((createdDate == null) ? 0 : createdDate.hashCode());
+		result = prime * result + ((caption == null) ? 0 : caption.hashCode());
+		result = prime * result + ((created_date == null) ? 0 : created_date.hashCode());
 		result = prime * result + ((filename == null) ? 0 : filename.hashCode());
 		result = prime * result + ((username == null) ? 0 : username.hashCode());
 		return result;
@@ -88,10 +94,15 @@ public class Photo implements Serializable{
 		if (getClass() != obj.getClass())
 			return false;
 		Photo other = (Photo) obj;
-		if (createdDate == null) {
-			if (other.createdDate != null)
+		if (caption == null) {
+			if (other.caption != null)
 				return false;
-		} else if (!createdDate.equals(other.createdDate))
+		} else if (!caption.equals(other.caption))
+			return false;
+		if (created_date == null) {
+			if (other.created_date != null)
+				return false;
+		} else if (!created_date.equals(other.created_date))
 			return false;
 		if (filename == null) {
 			if (other.filename != null)
@@ -106,4 +117,11 @@ public class Photo implements Serializable{
 		return true;
 	}
 
+	@Override
+	public String toString() {
+		return "Photo [filename=" + filename + ", caption=" + caption + ", username=" + username + ", createdDate="
+				+ created_date + "]";
+	}
+
+	
 }

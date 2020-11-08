@@ -10,7 +10,7 @@
         <button type="button" (click)="getPostMessages('true')">View Messages</button>
         <button type="button" (click)="logout()">Logout</button>
     </div>
-    <div *ngIf="users.length > 0">
+    <div *ngIf="myProfile.length > 0">
         <table>
             <tr>
                 <td>{{"User Name"}}</td>
@@ -20,7 +20,7 @@
             </tr> 
         </table>
     </div>
-    <div *ngFor = "let u of users">
+    <div *ngFor = "let u of myProfile">
         <table>
             <tr>
                 <td>{{u.username}}</td>
@@ -37,6 +37,16 @@
                 </tr> 
             </table>
         </div>
+    </div>
+    <div *ngIf="myFriends.length > 0">
+        <table>
+            <tr>
+                <td>{{"User Name"}}</td>
+                <td>{{"Email"}}</td>
+                <td>{{"First Name"}}</td>
+                <td>{{"Last Name"}}</td>
+            </tr> 
+        </table>
     </div>
     <div *ngFor = "let u of myFriends">
         <table>
@@ -66,12 +76,23 @@
         </table>
         
     </div>
-    <div *ngFor = "let u of myPhotos">
+    <div *ngIf="allPosts.length > 0">
         <table>
-            <td>{{u.username}}</td> 
-            <td><img src="https://revature20200921p2snapster.s3.us-east-2.amazonaws.com/{{u.filename}}" height="50"/></td>           
+            <tr>
+                <td>{{"User Name"}}</td>
+                <td>{{"Message"}}</td>
+                <td>{{"Sent Time"}}</td>
+            </tr> 
         </table>
-        
+    </div>
+    <div *ngFor = "let p of allPosts">
+        <table>
+            <tr>
+                <td>{{p.username}}</td>
+                <td>{{p.post}}</td>
+                <td>{{p.senttime}}</td>
+            </tr> 
+        </table>
     </div>
 </form>
 

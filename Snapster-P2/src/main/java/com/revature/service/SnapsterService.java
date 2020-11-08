@@ -51,8 +51,8 @@ public class SnapsterService {
 		return user;
 	}
 
-	public ArrayList<Photo> getPhotos(String username) {
-		ArrayList<Photo> photos = snapsterRepo.getPhotos(username);	
+	public ArrayList<Photo> getPhotos(String username, boolean includeFriends) {
+		ArrayList<Photo> photos = snapsterRepo.getPhotos(username, includeFriends);	
 		return photos;
 	}
 	

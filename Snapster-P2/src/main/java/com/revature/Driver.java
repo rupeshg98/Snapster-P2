@@ -29,7 +29,7 @@ public class Driver {
 		// driver.insertUser();
 		//driver.validateUser();
 		//driver.insertPhoto();
-		//driver.getPhotos();
+		driver.getPhotos();
 		//driver.insertRequest();
 		//driver.deleteRequest();
 		//driver.insertRequest();
@@ -38,7 +38,7 @@ public class Driver {
 		//driver.getAllMyFriends();
 		//driver.getMyPendingFriendRequests();
 		//driver.uploadImageFullProcess();
-		driver.getAllUserPosts();
+		//driver.getAllUserPosts();
 	}
 
 	public void getFriendRequests() {
@@ -106,13 +106,15 @@ public class Driver {
 		service.insertPhoto(photo3);
 	}
 
+	
+	
 	public void getPhotos() {
 
-		ArrayList<Photo> photos = service.getPhotos("user1");
+		ArrayList<Photo> photos = service.getPhotos("rupesh", true);
 
 		System.out.println("No.of Photos: " + photos.size());
 		for (Photo photo : photos) {
-			System.out.println("Photo for : " + photo.getUsername() + ", location: " + photo.getFilename());
+			System.out.println("Photo for : " + photo.getUsername() + ", location: " + photo.getFilename()+ ", location: " + photo.getCaption());
 		}
 
 	}
