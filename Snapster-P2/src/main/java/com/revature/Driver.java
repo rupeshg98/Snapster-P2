@@ -81,12 +81,12 @@ public class Driver {
 		String username = "user2";
 		String password = "pwd";
 
-		boolean validateUser1 = service.validateUser(username, password);
+		User validateUser1 = service.validateUser(username, password);
 		System.out.println("user " + username + ", valid test1 :" + validateUser1);
 
 		password = "pwd2";
 
-		boolean validateUser2 = service.validateUser(username, password);
+		User validateUser2 = service.validateUser(username, password);
 		System.out.println("user " + username + ", valid test2:" + validateUser2);
 
 	}

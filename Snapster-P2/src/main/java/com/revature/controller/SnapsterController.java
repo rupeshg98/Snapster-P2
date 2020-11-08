@@ -22,9 +22,9 @@ public class SnapsterController {
 	@GetMapping(path = "/login", produces = MediaType.APPLICATION_JSON_VALUE)
 	public String validateLogin(@RequestParam("username") String username, @RequestParam("password") String password) {
 		System.out.println("SnapsterController Received Username " + username + ", pwd: " + password);
-		boolean isValidUser = snapsterService.validateUser(username, password);
+		User user = snapsterService.validateUser(username, password);
 
-		return ("{\"isValidUser\":" + isValidUser + "}");
+		return ("{\"isValidUser\":" + user + "}");
 	}
 
 	@GetMapping(path = "/viewMyInfo", produces = MediaType.APPLICATION_JSON_VALUE)
