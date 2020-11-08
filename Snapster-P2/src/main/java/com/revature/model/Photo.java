@@ -21,11 +21,10 @@ public class Photo implements Serializable{
 	 */
 
 	@Id
+	@Column(name = "filename")
+	String filename;
 	@Column(name = "username")
 	String username;
-	@Id
-	@Column(name = "file_location")
-	String location;
 
 	@Column(name = "created_date")
 	Date createdDate;
@@ -34,10 +33,10 @@ public class Photo implements Serializable{
 		super();
 	}
 
-	public Photo(String username, String location, Date createdDate) {
+	public Photo(String username, String filename, Date createdDate) {
 		super();
 		this.username = username;
-		this.location = location;
+		this.filename = filename;
 		this.createdDate = createdDate;
 	}
 
@@ -49,12 +48,12 @@ public class Photo implements Serializable{
 		this.username = username;
 	}
 
-	public String getLocation() {
-		return location;
+	public String getFilename() {
+		return filename;
 	}
 
-	public void setLocation(String location) {
-		this.location = location;
+	public void setFilename(String filename) {
+		this.filename = filename;
 	}
 
 	public Date getCreatedDate() {
@@ -67,7 +66,7 @@ public class Photo implements Serializable{
 
 	@Override
 	public String toString() {
-		return "Photo [username=" + username + ", location=" + location + ", createdDate=" + createdDate + "]";
+		return "Photo [username=" + username + ", filename=" + filename + ", createdDate=" + createdDate + "]";
 	}
 
 	@Override
@@ -75,7 +74,7 @@ public class Photo implements Serializable{
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((createdDate == null) ? 0 : createdDate.hashCode());
-		result = prime * result + ((location == null) ? 0 : location.hashCode());
+		result = prime * result + ((filename == null) ? 0 : filename.hashCode());
 		result = prime * result + ((username == null) ? 0 : username.hashCode());
 		return result;
 	}
@@ -94,10 +93,10 @@ public class Photo implements Serializable{
 				return false;
 		} else if (!createdDate.equals(other.createdDate))
 			return false;
-		if (location == null) {
-			if (other.location != null)
+		if (filename == null) {
+			if (other.filename != null)
 				return false;
-		} else if (!location.equals(other.location))
+		} else if (!filename.equals(other.filename))
 			return false;
 		if (username == null) {
 			if (other.username != null)
