@@ -1,11 +1,8 @@
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 
-<<<<<<< HEAD
 import org.junit.jupiter.api.Test;
-=======
 import java.util.List;
->>>>>>> 8248ca9207237105a1463f184abd09aee6e75fdb
 
 import com.revature.controller.SnapsterController;
 import com.revature.model.User;
