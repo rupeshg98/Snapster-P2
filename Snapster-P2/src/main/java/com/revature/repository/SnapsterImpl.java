@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.hibernate.HibernateException;
+import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.springframework.stereotype.Repository;
@@ -332,22 +333,26 @@ public class SnapsterImpl implements Snapster {
 		try {
 		    String query = "";
 		    if (includeFriends) {
-		    	query = "FROM UserPosts WHERE where username in ("+
-			    " select receiver as username from friendrequests where sender=:xyz and approval = true "+
-			    " union " +
-			    " select sender as username from friendrequests where receiver=:xyz and approval = true " +
-			    " union select :xyz as username) " +
+		    	query = "select * from userposts where username in (" +
+			    " select f.receiver as username from friendrequests as f where sender=:xyz and approval = true "+
+			    " union all " +
+			    " select f.sender as username from friendrequests as f where receiver=:xyz and approval = true " +
+			    " union select :xyz as username" + 
+			    " ) " +
 			    " order by senttime ";
 		    } else {
-		    	query = "FROM UserPosts WHERE where username=:xyz order by senttime ";
+		    	query = "select * from userposts where username=:xyz order by senttime ";
 		    }
+		    
 			s = HibernateSessionFactory.getSession();
 			tx = s.beginTransaction();
 
-			List<UserPosts> userposts2 = s.createQuery(query).setParameter("xyz", username)
-					.getResultList();
+			SQLQuery<UserPosts> sqlQuery = s.createSQLQuery(query);
+			sqlQuery.addEntity(UserPosts.class);
+			sqlQuery.setParameter("xyz", username);
+			List<UserPosts> results = sqlQuery.list();
 
-			userPosts = new ArrayList<UserPosts>(userposts2);
+			userPosts.addAll(results);
 
 			tx.commit();
 		} catch (HibernateException e) {

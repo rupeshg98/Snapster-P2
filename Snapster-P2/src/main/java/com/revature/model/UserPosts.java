@@ -23,9 +23,10 @@ public class UserPosts implements Serializable {
 	@Id
 	@Column(name = "username")
 	String username;
+	@Id
 	@Column(name = "post")
 	String post;
-
+	@Id
 	@Column(name = "senttime")
 	Date senttime;
 

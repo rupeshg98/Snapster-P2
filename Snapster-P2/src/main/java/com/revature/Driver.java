@@ -29,7 +29,7 @@ public class Driver {
 		// driver.insertUser();
 		//driver.validateUser();
 		//driver.insertPhoto();
-		driver.getPhotos();
+		//driver.getPhotos();
 		//driver.insertRequest();
 		//driver.deleteRequest();
 		//driver.insertRequest();
@@ -164,7 +164,6 @@ public class Driver {
 		for (UserPosts userPost : userPosts) {
 			System.out.println("Posts: " + userPost.getUsername() + ", post: " + userPost.getPost() + ", time: " + userPost.getSenttime());
 		}
-		
 		
 		userPosts = service.getAllUserPosts("user2",false);
 

@@ -83,6 +83,10 @@ public class SnapsterService {
 		return snapsterRepo.getMyPendingFriendRequests(username);
 	}
 	
+	public boolean insertUserPosts(UserPosts post) {
+		return snapsterRepo.insertUserPosts(post);
+	}
+	
 	public ArrayList<UserPosts> getAllUserPosts(String username, boolean includeFriends) {
 		return snapsterRepo.getAllUserPosts(username, includeFriends);
 	}

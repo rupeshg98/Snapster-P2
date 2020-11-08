@@ -52,6 +52,7 @@
 		<mapping class="com.revature.model.FriendRequest" />
 		<mapping class="com.revature.model.User" />
 		<mapping class="com.revature.model.Photo" />
+		<mapping class="com.revature.model.UserPosts" />
 
 	</session-factory>
 </hibernate-configuration>
