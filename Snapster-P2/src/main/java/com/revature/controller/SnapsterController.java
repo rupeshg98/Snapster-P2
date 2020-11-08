@@ -88,6 +88,8 @@ public class SnapsterController {
 		if (photos == null) {
 			photos = new ArrayList<Photo>();
 		}
+
+		System.out.println("DEBUG: filename = " + photos.get(0).getFilename());
 		return photos;
 	}
 }
