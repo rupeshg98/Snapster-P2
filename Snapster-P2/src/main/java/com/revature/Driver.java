@@ -135,7 +135,7 @@ public class Driver {
 	
 	public void getMyPendingFriendRequests() {
 
-		ArrayList<User> users = service.getMyPendingFriendRequests("user1");
+		ArrayList<User> users = service.getMyPendingFriendRequests("rupesh");
 
 		System.out.println("No.of Users: " + users.size());
 		for (User user : users) {

@@ -268,7 +268,7 @@ public class SnapsterImpl implements Snapster {
 				for (int i = 0; i < friendsIamNotApproved.size(); i++) {
 					FriendRequest friendRequest = friendsIamNotApproved.get(i);
 					if (!friendRequest.isApproved()) {
-						String friendUserName = friendRequest.getReceiver();
+						String friendUserName = friendRequest.getSender();
 						User user = getUser(friendUserName);
 						if (user != null) {
 							user.setPassword("");
