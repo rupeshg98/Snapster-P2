@@ -29,18 +29,19 @@ public class SnapsterService {
 		snapsterRepo.insertPhoto(photo);
 	}
 
-	public boolean validateUser(String username, String pwd) {
+	public User validateUser(String username, String pwd) {
 		User user = snapsterRepo.getUser(username);
 		if (user != null) {
 			if (pwd != null && pwd.equals(user.getPassword())) {
-				return true;
+				user.setPassword("");
+				return user;
 			} else {
 				System.out.println ("Inside Service validateUser: pwd received: " + pwd + ", dbpwd: " + user.getPassword());
 			}
 		} else {
 			System.out.println ("Inside Service validateUser: user returned NULL");
 		}
-		return false;
+		return null;
 	}
 
 	public User getUser(String username) {
