@@ -52,8 +52,7 @@ public class SnapsterService {
 	}
 
 	public ArrayList<Photo> getPhotos(String username) {
-		ArrayList<Photo> photos = snapsterRepo.getPhotos(username);
-
+		ArrayList<Photo> photos = snapsterRepo.getPhotos(username);	
 		return photos;
 	}
 	

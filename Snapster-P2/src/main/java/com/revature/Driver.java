@@ -29,7 +29,7 @@ public class Driver {
 		// driver.insertUser();
 		//driver.validateUser();
 		//driver.insertPhoto();
-		//driver.getPhotos();
+		driver.getPhotos();
 		//driver.insertRequest();
 		//driver.deleteRequest();
 		//driver.insertRequest();
