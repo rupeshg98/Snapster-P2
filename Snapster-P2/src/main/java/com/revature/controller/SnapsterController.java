@@ -76,8 +76,8 @@ public class SnapsterController {
 	@GetMapping(path = "/unFriend", produces = MediaType.APPLICATION_JSON_VALUE)
 	public boolean unFriend(@RequestParam("senderusername") String sender, @RequestParam("receiverusername") String receiver) {
 		FriendRequest request = new FriendRequest();
-		request.setSender(receiver);
-		request.setReceiver(sender);
+		request.setSender(sender);
+		request.setReceiver(receiver);
 		return snapsterService.deleteRequest(request);
 	}
 }

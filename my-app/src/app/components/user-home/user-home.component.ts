@@ -117,6 +117,19 @@ export class UserHomeComponent implements OnInit {
     console.log("approveFriend Clicked");
   }
 
+  unFriend(friendUserName) {
+    let currentUser = localStorage.getItem("currentUser");
+    this.friendService.unFriend(currentUser,friendUserName).subscribe(
+      (data) => {
+        console.log("unFriend response: " + data)
+        console.log("unFriend response: " + data[0])
+      },
+      () => {
+        console.log("sorry something went wrong")
+      }
+    )
+    console.log("unFriend Clicked");
+  }
   onSubmit() {
       this.submitted = true;
 

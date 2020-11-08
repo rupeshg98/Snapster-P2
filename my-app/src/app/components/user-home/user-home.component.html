@@ -21,6 +21,7 @@
             <td>{{u.email}}</td>
             <td>{{u.firstname}}</td>
             <td>{{u.lastname}}</td>
+            <td><button type="button" (click)="unFriend(u.username)">Unfriend</button></td>
         </table>
     </div>
     <div *ngFor = "let u of myPendingFriends">

@@ -170,6 +170,11 @@ public class SnapsterImpl implements Snapster {
 			s = HibernateSessionFactory.getSession();
 			tx = s.beginTransaction();
 			s.delete(req);
+			
+			FriendRequest req2 = new FriendRequest();
+			req2.setSender(req.getReceiver());
+			req2.setReceiver(req.getSender());
+			s.delete(req2);
 			tx.commit();
 			returnValue = true;
 		} catch (HibernateException e) {
