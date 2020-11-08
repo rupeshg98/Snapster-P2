@@ -1,10 +1,10 @@
-import static org.junit.jupiter.api.Assertions.*;
-
-import org.junit.jupiter.api.Test;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 
+import org.junit.jupiter.api.Test;
+
 import com.revature.controller.SnapsterController;
+import com.revature.model.User;
 
 class SnapsterControllerTest {
 
@@ -14,8 +14,8 @@ class SnapsterControllerTest {
 	void testValidateLogin() {
 		String username = "me";
 		String password = "pwd";
-		String a = verify(mockController).validateLogin(username, password);
-		assert (a) != null;
+		User user = verify(mockController).validateLogin(username, password);
+		assert (user) != null;
 	}
 
 }
