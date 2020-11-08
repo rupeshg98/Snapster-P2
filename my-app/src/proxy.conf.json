@@ -43,5 +43,23 @@
       },
       "changeOrigin": true,
       "logLevel": "debug"
+    },
+    "/unFriend": {
+      "target": "http://18.217.143.242:8085/Snapster-P2/unFriend",
+      "secure": false,
+      "pathRewrite": {
+        "^/unFriend": ""
+      },
+      "changeOrigin": true,
+      "logLevel": "debug"
+    },
+    "/addFriend": {
+      "target": "http://18.217.143.242:8085/Snapster-P2/addFriend",
+      "secure": false,
+      "pathRewrite": {
+        "^/addFriend": ""
+      },
+      "changeOrigin": true,
+      "logLevel": "debug"
     }
   }

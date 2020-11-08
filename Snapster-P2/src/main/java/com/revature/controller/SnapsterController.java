@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.revature.model.FriendRequest;
+import com.revature.model.Photo;
 import com.revature.model.User;
 import com.revature.service.SnapsterService;
 
@@ -79,5 +80,14 @@ public class SnapsterController {
 		request.setSender(sender);
 		request.setReceiver(receiver);
 		return snapsterService.deleteRequest(request);
+	}
+	
+	@GetMapping(path = "/getMyPhotos", produces = MediaType.APPLICATION_JSON_VALUE)
+	public List<Photo> getMyPhotos(@RequestParam("username") String username) {
+		ArrayList<Photo> photos = snapsterService.getPhotos(username);
+		if (photos == null) {
+			photos = new ArrayList<Photo>();
+		}
+		return photos;
 	}
 }

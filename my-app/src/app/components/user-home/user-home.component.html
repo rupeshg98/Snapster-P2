@@ -3,8 +3,8 @@
         <button type="button" (click)="viewMyInfo()">View My Info</button>
         <button type="button" (click)="viewMyPhotos()">View My Photos</button>
         <button type="button" (click)="viewMyFriends()">View My Friends</button>
-        <button type="button" (click)="viewMyPendingFriendRequest()">View My Pending FriendRequests</button>
-        <button type="button" (click)="addFriend()">Add Friend</button>
+        <button type="button" (click)="viewMyPendingFriendRequest()">View My FriendRequests</button>
+        <button type="button" (click)="showFriendRequestForm()">Send Friend Request</button>
         <button type="button" (click)="viewMyFriendPhotos()">View My Friend Photos</button>
     </div>
     <div *ngFor = "let u of users">
@@ -35,3 +35,18 @@
     </div>
 </form>
 
+<div *ngFor = "let u of requestFriendList">
+    <form  [formGroup]="requestFriendForm" (ngSubmit)="requestFriend()">
+        <div class="form-group">
+            <label for="friendusername">Friend Username</label>
+            <input type="text" formControlName="friendusername" class="form-control" [ngClass]="{ 'is-invalid': submitted && requestFriendFunc.friendusername.errors }" />
+            <div *ngIf="submitted && requestFriendFunc.friendusername.errors" class="invalid-feedback">
+                <div *ngIf="requestFriendFunc.friendusername.errors.required">Username is required</div>
+            </div>
+            <button [disabled]="loading" class="btn btn-primary">
+                <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+                Request
+            </button>
+        </div>
+    </form>
+</div>
