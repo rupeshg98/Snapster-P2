@@ -130,8 +130,11 @@
 <div *ngFor = "let u of requestPhotosList">
     <form  [formGroup]="requestPhotosForm" (ngSubmit)="sendPhoto()">
         <div class="form-group">
-            <label for="img">Upload an image:</label>
-            <input type="file" id="img" value = "img" formControlName="img" class="form-control" [ngClass]="{ 'is-invalid': submitted && sendPhotoFunc.img.errors }">
+            <label for="img2">Upload an image:</label>
+            <!--
+                <input type="file" id="img" name = "img" value = "img" formControlName="img" class="form-control" (change)="onPhotoFileSelect($event)" [ngClass]="{ 'is-invalid': submitted && sendPhotoFunc.img.errors }">
+            -->
+            <input type="file" name = "img" (change)="onPhotoFileSelect($event)" >
             <label for="message">Caption:</label>
             <input type="text" formControlName="message" class="form-control" [ngClass]="{ 'is-invalid': submitted && sendPostMessageFunc.message.errors }" />
            
