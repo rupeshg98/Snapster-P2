@@ -73,4 +73,8 @@ public class SnapsterService {
 		return snapsterRepo.getFriendRequests(receiver);
 		
 	}
+	
+	public ArrayList<User> getAllMyFriends(String username){
+		return snapsterRepo.getAllMyFriends(username);		
+	}
 }

@@ -38,12 +38,14 @@ export class UserHomeComponent implements OnInit {
       
   }
   users:Object[]
+  myFriends:Object[]
   // convenience getter for easy access to form fields
   get f() { return this.userHomeForm.controls; }
 
   viewMyInfo() {
     console.log("viewMyInfo Clicked");
-    this.friendService.viewMyInfo("rupesh").subscribe(
+    let currentUser = localStorage.getItem("currentUser");
+    this.friendService.viewMyInfo(currentUser).subscribe(
       (data) => {
         console.log(data)
         this.users = data;
@@ -52,8 +54,6 @@ export class UserHomeComponent implements OnInit {
         console.log("sorry something went wrong")
       }
     )
-
-    
   }
 
   viewMyPhotos(){
@@ -62,6 +62,16 @@ export class UserHomeComponent implements OnInit {
 
   viewMyFriends(){
     console.log("viewMyFriends Clicked");
+    let currentUser = localStorage.getItem("currentUser");
+    this.friendService.viewMyFriends(currentUser).subscribe(
+      (data) => {
+        console.log(data)
+        this.myFriends = data;
+      },
+      () => {
+        console.log("sorry something went wrong")
+      }
+    )
   }  
   
   viewMyPendingFriendRequest(){

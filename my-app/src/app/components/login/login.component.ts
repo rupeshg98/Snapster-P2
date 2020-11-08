@@ -49,23 +49,25 @@ export class LoginComponent implements OnInit {
 
         this.loading = true;
         
-        let responseData = this.friendService.validateLogin(this.f.username.value, this.f.password.value);
-        
-        console.log("Inside logincomponentts response Data: " + responseData);
-
-        this.router.navigate(["/home"]);
-
-            // .pipe(first())
-            // .subscribe(
-            //     data => {
-            //         console.log("received back: " + data);
-            //         this.router.navigate(["/home"]);
-            //     },
-            //     error => {
-                   
-            //         this.loading = false;
-            //     });
-               
+        this.friendService.validateLogin(this.f.username.value, this.f.password.value).subscribe(
+            (data) => {
+                console.log("Received validateLogin response: " + data);
+                if (data == null) {
+                    alert("Invalid credentials!");
+                    this.router.navigate(["/login"]);
+                }
+                else {
+                    console.log("Values: " + data["username"]);
+                    //localStorage.setItem('currentUser', JSON.stringify(data["username"]));
+                    localStorage.setItem('currentUser', data["username"]);
+                    this.router.navigate(["/home"]);
+                }
+            },
+            () => {
+              console.log("sorry something went wrong")
+              this.router.navigate(["/login"]);
+            }
+          )
                 
     }
     

@@ -197,4 +197,58 @@ public class SnapsterImpl implements Snapster {
 
 		return friends;
 	}
+	
+	public ArrayList<User> getAllMyFriends(String username) {
+		System.out.println("In repository getAllMyFriends");
+		Session s = null;
+		Transaction tx = null;
+		ArrayList<User> friends = new ArrayList<User>();
+
+		try {
+			s = HibernateSessionFactory.getSession();
+			tx = s.beginTransaction();
+			List<FriendRequest> friendsApprovedMe = s.createQuery("FROM FriendRequest WHERE sender = :xyz")
+					.setParameter("xyz", username).getResultList();
+			List<FriendRequest> friendsIApproved = s.createQuery("FROM FriendRequest WHERE receiver = :xyz")
+					.setParameter("xyz", username).getResultList();
+			tx.commit();
+			
+			if (friendsApprovedMe != null) {
+				for (int i = 0; i < friendsApprovedMe.size(); i++) {
+					FriendRequest friendRequest = friendsApprovedMe.get(i);
+					if (friendRequest.isApproved()) {
+						String friendUserName = friendRequest.getReceiver();
+						User user = getUser(friendUserName);
+						if (user != null) {
+							user.setPassword("");
+							friends.add(user);
+						}
+					}
+				}
+			}
+
+			if (friendsIApproved != null) {
+				for (int i = 0; i < friendsIApproved.size(); i++) {
+					FriendRequest friendRequest = friendsIApproved.get(i);
+					if (friendRequest.isApproved()) {
+						String friendUserName = friendRequest.getSender();
+						User user = getUser(friendUserName);
+						if (user != null) {
+							user.setPassword("");
+							friends.add(user);
+						}
+					}
+				}
+			}
+
+		} catch (HibernateException e) {
+			e.printStackTrace();
+			tx.rollback();
+		} finally {
+			s.close();
+		}
+
+		return friends;
+	}
+
 }

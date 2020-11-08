@@ -38,10 +38,13 @@ public class SnapsterController {
 		return users;
 	}
 
-	@GetMapping(path = "/loginn", produces = MediaType.TEXT_HTML_VALUE)
-	public void validateLoginn() {
-		System.out.println("SnapsterController Received Username ");
-
+	@GetMapping(path = "/viewMyFriends", produces = MediaType.APPLICATION_JSON_VALUE)
+	public List<User> viewMyFriends(@RequestParam("username") String username) {
+		ArrayList<User> users = snapsterService.getAllMyFriends(username);
+		if (users == null) {
+			users = new ArrayList<User>();
+		}
+		return users;
 	}
 
 }

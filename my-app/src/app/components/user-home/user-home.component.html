@@ -15,6 +15,13 @@
             <td>{{u.lastname}}</td>
         </table>
     </div>
-    
+    <div *ngFor = "let u of myFriends">
+        <table>
+            <td>{{u.username}}</td>
+            <td>{{u.email}}</td>
+            <td>{{u.firstname}}</td>
+            <td>{{u.lastname}}</td>
+        </table>
+    </div>
 </form>
 
