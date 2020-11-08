@@ -23,5 +23,14 @@
             <td>{{u.lastname}}</td>
         </table>
     </div>
+    <div *ngFor = "let u of myPendingFriends">
+        <table>
+            <td>{{u.username}}</td>
+            <td>{{u.email}}</td>
+            <td>{{u.firstname}}</td>
+            <td>{{u.lastname}}</td>
+            <td><button type="button" (click)="approveFriend(u.username)">Approve</button></td>
+        </table>
+    </div>
 </form>
 

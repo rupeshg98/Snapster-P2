@@ -58,7 +58,7 @@ public class SnapsterController {
 	}
 
 	@GetMapping(path = "/addFriend", produces = MediaType.APPLICATION_JSON_VALUE)
-	public boolean addFriend(@RequestParam("senderusername") String sender, @RequestParam("senderusername") String receiver) {
+	public boolean addFriend(@RequestParam("senderusername") String sender, @RequestParam("receiverusername") String receiver) {
 		FriendRequest request = new FriendRequest();
 		request.setSender(sender);
 		request.setReceiver(receiver);
@@ -66,7 +66,7 @@ public class SnapsterController {
 	}
 
 	@GetMapping(path = "/approveRequest", produces = MediaType.APPLICATION_JSON_VALUE)
-	public boolean approveRequest(@RequestParam("senderusername") String sender, @RequestParam("senderusername") String receiver) {
+	public boolean approveRequest(@RequestParam("senderusername") String sender, @RequestParam("receiverusername") String receiver) {
 		FriendRequest request = new FriendRequest();
 		request.setSender(sender);
 		request.setReceiver(receiver);
@@ -74,7 +74,7 @@ public class SnapsterController {
 	}
 	
 	@GetMapping(path = "/unFriend", produces = MediaType.APPLICATION_JSON_VALUE)
-	public boolean unFriend(@RequestParam("senderusername") String sender, @RequestParam("senderusername") String receiver) {
+	public boolean unFriend(@RequestParam("senderusername") String sender, @RequestParam("receiverusername") String receiver) {
 		FriendRequest request = new FriendRequest();
 		request.setSender(receiver);
 		request.setReceiver(sender);

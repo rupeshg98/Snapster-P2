@@ -39,6 +39,7 @@ export class UserHomeComponent implements OnInit {
   }
   users:Object[]
   myFriends:Object[]
+  myPendingFriends:Object[]
   // convenience getter for easy access to form fields
   get f() { return this.userHomeForm.controls; }
 
@@ -49,6 +50,8 @@ export class UserHomeComponent implements OnInit {
       (data) => {
         console.log(data)
         this.users = data;
+        this.myFriends = [];
+        this.myPendingFriends = [];
       },
       () => {
         console.log("sorry something went wrong")
@@ -67,6 +70,8 @@ export class UserHomeComponent implements OnInit {
       (data) => {
         console.log(data)
         this.myFriends = data;
+        this.users = [];
+        this.myPendingFriends = [];
       },
       () => {
         console.log("sorry something went wrong")
@@ -75,6 +80,18 @@ export class UserHomeComponent implements OnInit {
   }  
   
   viewMyPendingFriendRequest(){
+    let currentUser = localStorage.getItem("currentUser");
+    this.friendService.viewMyPendingFriendRequest(currentUser).subscribe(
+      (data) => {
+        console.log(data)
+        this.myPendingFriends = data;
+        this.myFriends = [];
+        this.users = [];
+      },
+      () => {
+        console.log("sorry something went wrong")
+      }
+    )
     console.log("viewMyPendingFriendRequest Clicked");
   }  
   
@@ -84,6 +101,20 @@ export class UserHomeComponent implements OnInit {
   
   viewMyFriendPhotos(){
     console.log("viewMyPendingFriendRequest Clicked");
+  }
+
+  approveFriend(friendUserName) {
+    let currentUser = localStorage.getItem("currentUser");
+    this.friendService.approveFriend(currentUser,friendUserName).subscribe(
+      (data) => {
+        console.log("approveFriend response: " + data)
+        console.log("approveFriend response: " + data[0])
+      },
+      () => {
+        console.log("sorry something went wrong")
+      }
+    )
+    console.log("approveFriend Clicked");
   }
 
   onSubmit() {

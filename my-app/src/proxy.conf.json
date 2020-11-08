@@ -25,5 +25,23 @@
       },
       "changeOrigin": true,
       "logLevel": "debug"
+    },
+    "/viewMyPendingFriendRequests": {
+      "target": "http://18.217.143.242:8085/Snapster-P2/viewMyPendingFriendRequests",
+      "secure": false,
+      "pathRewrite": {
+        "^/viewMyPendingFriendRequests": ""
+      },
+      "changeOrigin": true,
+      "logLevel": "debug"
+    },
+    "/approveRequest": {
+      "target": "http://18.217.143.242:8085/Snapster-P2/approveRequest",
+      "secure": false,
+      "pathRewrite": {
+        "^/approveRequest": ""
+      },
+      "changeOrigin": true,
+      "logLevel": "debug"
     }
   }

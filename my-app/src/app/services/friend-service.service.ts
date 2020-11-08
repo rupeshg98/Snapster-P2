@@ -39,11 +39,24 @@ export class FriendServiceService {
     let myparams = new HttpParams().set('username', username);
     return this.httpClient.get('viewMyInfo', { params: myparams}) as Observable<Object[]>
   }
-  
+
   viewMyFriends(username) {
     console.log(username);
 
     let myparams = new HttpParams().set('username', username);
     return this.httpClient.get('viewMyFriends', { params: myparams}) as Observable<Object[]>
+  }
+  viewMyPendingFriendRequest(username){
+    console.log(username);
+
+    let myparams = new HttpParams().set('username', username);
+    return this.httpClient.get('viewMyPendingFriendRequests', { params: myparams}) as Observable<Object[]>
+  }
+
+  approveFriend(username,friendusername){
+    console.log(username);
+
+    let myparams = new HttpParams().set('senderusername', friendusername).set('receiverusername', username);
+    return this.httpClient.get('approveRequest', { params: myparams}) as Observable<Object[]>
   }
 }
