@@ -15,22 +15,24 @@ class SnapsterControllerTest {
 	void testValidateLogin() {
 		String username = "rupesh";
 		String password = "pwd";
-		User user = verify(mockController).validateLogin(username, password);
-		assert (user) != null;
+		User user = mockController.validateLogin(username, password);
+		if(user != null)
+			assert(true);
+	}
+	
+	@Test
+	void testNotValidateLogin() {
+		String username = "fakename";
+		String password = "pwd";
+		User user = mockController.validateLogin(username, password);
+		if(user == null)
+			assert(true);
 	}
 
 	@Test
 	void testViewMyInfo() {
 		String username = "rupesh";
-		boolean exists = false;
-		List<User> users = verify(mockController).viewMyInfo(username);
-		for(User user: users) {
-			if(user.getUsername() == "rupesh") {
-				exists = true;
-				assert(true);
-			}
-		}
-		if(exists == false)
-			assert(false);
+		mockController.viewMyInfo(username);
+		verify(mockController).viewMyInfo(username);
 	}
 }
