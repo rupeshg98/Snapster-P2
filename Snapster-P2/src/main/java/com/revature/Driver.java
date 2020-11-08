@@ -28,14 +28,14 @@ public class Driver {
 		// driver.insertUser();
 		//driver.validateUser();
 		//driver.insertPhoto();
-		//driver.getPhotos();
+		driver.getPhotos();
 		//driver.insertRequest();
 		//driver.deleteRequest();
 		//driver.insertRequest();
 		//driver.getFriendRequests();
 		//driver.addImageToS3();
 		//driver.getAllMyFriends();
-		driver.getMyPendingFriendRequests();
+		//driver.getMyPendingFriendRequests();
 		//driver.uploadImageFullProcess();
 	}
 

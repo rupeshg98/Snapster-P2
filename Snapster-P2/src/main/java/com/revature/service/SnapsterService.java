@@ -53,6 +53,12 @@ public class SnapsterService {
 	public ArrayList<Photo> getPhotos(String username) {
 		ArrayList<Photo> photos = snapsterRepo.getPhotos(username);
 
+		for(int i = 0; i <  photos.size(); i++) {
+			String filename = photos.get(i).getFilename();
+			filename = "https://revature20200921p2snapster.s3.us-east-2.amazonaws.com/" + filename;
+			photos.get(i).setFilename(filename);
+		}
+		
 		return photos;
 	}
 	
