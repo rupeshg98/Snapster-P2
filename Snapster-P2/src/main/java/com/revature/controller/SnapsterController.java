@@ -1,6 +1,8 @@
 package com.revature.controller;
 
+import java.io.File;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.http.MediaType;
@@ -9,9 +11,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.github.f4b6a3.uuid.UuidCreator;
 import com.revature.model.FriendRequest;
 import com.revature.model.Photo;
 import com.revature.model.User;
+import com.revature.service.S3Service;
 import com.revature.service.SnapsterService;
 
 @RestController(value = "SnapsterController")
@@ -20,6 +24,7 @@ import com.revature.service.SnapsterService;
 
 public class SnapsterController {
 	SnapsterService snapsterService = new SnapsterService();
+	S3Service s3service = new S3Service();
 
 	@GetMapping(path = "/login", produces = MediaType.APPLICATION_JSON_VALUE)
 	public User validateLogin(@RequestParam("username") String username, @RequestParam("password") String password) {
@@ -88,8 +93,15 @@ public class SnapsterController {
 		if (photos == null) {
 			photos = new ArrayList<Photo>();
 		}
-
-		System.out.println("DEBUG: filename = " + photos.get(0).getFilename());
 		return photos;
+	}
+	
+	@GetMapping(path = "/addPhoto", produces = MediaType.APPLICATION_JSON_VALUE)
+	public void addPhoto(@RequestParam("file") File file, @RequestParam("username") String username) {
+		//TODO server-side validation here
+		String uuid = UuidCreator.getTimeOrdered().toString();
+		Photo photo = new Photo("user1", uuid, new Date());
+		snapsterService.insertPhoto(photo);
+		s3service.putObject(file, uuid);
 	}
 }
