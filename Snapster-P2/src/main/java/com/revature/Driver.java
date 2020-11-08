@@ -7,6 +7,7 @@ import java.util.Date;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import com.github.f4b6a3.uuid.UuidCreator;
 import com.revature.model.FriendRequest;
 import com.revature.model.Photo;
 import com.revature.model.User;
@@ -25,7 +26,7 @@ public class Driver {
 		driver.s3service = ctx.getBean("s3service",S3Service.class);
 		
 		// driver.insertUser();
-		driver.validateUser();
+		//driver.validateUser();
 		//driver.insertPhoto();
 		//driver.getPhotos();
 		//driver.insertRequest();
@@ -33,7 +34,7 @@ public class Driver {
 		//driver.insertRequest();
 		//driver.getFriendRequests();
 		//driver.addImageToS3();
-		
+		driver.uploadImageFullProcess();
 	}
 
 	public void getFriendRequests() {
@@ -107,17 +108,29 @@ public class Driver {
 
 		System.out.println("No.of Photos: " + photos.size());
 		for (Photo photo : photos) {
-			System.out.println("Photo for : " + photo.getUsername() + ", location: " + photo.getLocation());
+			System.out.println("Photo for : " + photo.getUsername() + ", location: " + photo.getFilename());
 		}
 
 	}
 	
 	public void addImageToS3() {
 
-		S3Service s3service = new S3Service();
-	
 		File file = new File("example.png");
 
-		s3service.putObject(file);
+		//s3service.putObject(file);
+	}
+	
+	public void uploadImageFullProcess() {
+		//user uploads photo
+		File image = new File("example.png");
+		//server-side validation occurs
+		
+		//Photo object is created with username, new filename, and date
+		String uuid = UuidCreator.getTimeOrdered().toString();
+		Photo photo = new Photo("user1", uuid, new Date());
+		//Photo is inserted into database
+		service.insertPhoto(photo);
+		//Photo is added to S3 bucket
+		s3service.putObject(image, uuid);
 	}
 }

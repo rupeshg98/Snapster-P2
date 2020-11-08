@@ -20,8 +20,8 @@ public class S3Service {
 		this.s3repo = s3repoImpl;
 	}
 	
-	public PutObjectResult putObject(File file) {
-		return s3repo.putObject(file);
+	public PutObjectResult putObject(File file, String uuid) {
+		return s3repo.putObject(file, uuid);
 	}
 
 }
