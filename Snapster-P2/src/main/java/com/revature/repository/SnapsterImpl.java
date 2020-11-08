@@ -120,58 +120,65 @@ public class SnapsterImpl implements Snapster {
 		return photos;
 	}
 
-	public void insertFriendRequest(FriendRequest req) {
+	public boolean insertFriendRequest(FriendRequest req) {
 
 		Session s = null;
 		Transaction tx = null;
-
+		boolean returnValue = false;
 		try {
 			s = HibernateSessionFactory.getSession();
 			tx = s.beginTransaction();
 			s.save(req);
 			tx.commit();
+			returnValue = true;
 		} catch (HibernateException e) {
 			e.printStackTrace();
 			tx.rollback();
 		} finally {
 			s.close();
 		}
+		
+		return returnValue;
 	}
 
-	public void approveRequest(FriendRequest req) {
+	public boolean approveRequest(FriendRequest req) {
 		Session s = null;
 		Transaction tx = null;
-
+		boolean returnValue = false;
 		try {
 			s = HibernateSessionFactory.getSession();
 			tx = s.beginTransaction();
 
 			s.update(req);
 			tx.commit();
+			returnValue = true;
 		} catch (HibernateException e) {
 			e.printStackTrace();
 			tx.rollback();
 		} finally {
 			s.close();
 		}
+		return returnValue;
 	}
 
-	public void deleteRequest(FriendRequest req) {
+	public boolean deleteRequest(FriendRequest req) {
 
 		Session s = null;
 		Transaction tx = null;
-
+		boolean returnValue = false;
 		try {
 			s = HibernateSessionFactory.getSession();
 			tx = s.beginTransaction();
 			s.delete(req);
 			tx.commit();
+			returnValue = true;
 		} catch (HibernateException e) {
 			e.printStackTrace();
 			tx.rollback();
 		} finally {
 			s.close();
 		}
+		return returnValue;
 	}
 
 	public ArrayList<FriendRequest> getFriendRequests(String receiver) {

@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.revature.model.FriendRequest;
 import com.revature.model.User;
 import com.revature.service.SnapsterService;
 
@@ -54,5 +55,29 @@ public class SnapsterController {
 			users = new ArrayList<User>();
 		}
 		return users;
+	}
+
+	@GetMapping(path = "/addFriend", produces = MediaType.APPLICATION_JSON_VALUE)
+	public boolean addFriend(@RequestParam("senderusername") String sender, @RequestParam("senderusername") String receiver) {
+		FriendRequest request = new FriendRequest();
+		request.setSender(sender);
+		request.setReceiver(receiver);
+		return snapsterService.insertFriendRequest(request);
+	}
+
+	@GetMapping(path = "/approveRequest", produces = MediaType.APPLICATION_JSON_VALUE)
+	public boolean approveRequest(@RequestParam("senderusername") String sender, @RequestParam("senderusername") String receiver) {
+		FriendRequest request = new FriendRequest();
+		request.setSender(sender);
+		request.setReceiver(receiver);
+		return snapsterService.approveRequest(request);
+	}
+	
+	@GetMapping(path = "/unFriend", produces = MediaType.APPLICATION_JSON_VALUE)
+	public boolean unFriend(@RequestParam("senderusername") String sender, @RequestParam("senderusername") String receiver) {
+		FriendRequest request = new FriendRequest();
+		request.setSender(receiver);
+		request.setReceiver(sender);
+		return snapsterService.deleteRequest(request);
 	}
 }

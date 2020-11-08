@@ -56,17 +56,18 @@ public class SnapsterService {
 		return photos;
 	}
 	
-	public void insertFriendRequest(FriendRequest req) {
-		snapsterRepo.insertFriendRequest(req);
+	public boolean insertFriendRequest(FriendRequest req) {
+		req.setApproved(false);
+		return snapsterRepo.insertFriendRequest(req);
 	}
 	
-	public void approveRequest(FriendRequest req) {
+	public boolean approveRequest(FriendRequest req) {
 		req.setApproved(true);
-		snapsterRepo.approveRequest(req);
+		return snapsterRepo.approveRequest(req);
 	}
 	
-	public void deleteRequest(FriendRequest req) {
-		snapsterRepo.deleteRequest(req);
+	public boolean deleteRequest(FriendRequest req) {
+		return snapsterRepo.deleteRequest(req);
 	}
 	public ArrayList<FriendRequest> getFriendRequests(String receiver) {
 		System.out.println("In service getMyPendingFriendRequests");
