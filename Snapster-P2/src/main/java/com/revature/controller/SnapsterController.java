@@ -47,4 +47,12 @@ public class SnapsterController {
 		return users;
 	}
 
+	@GetMapping(path = "/viewMyPendingFriendRequests", produces = MediaType.APPLICATION_JSON_VALUE)
+	public List<User> viewMyPendingFriendRequests(@RequestParam("username") String username) {
+		ArrayList<User> users = snapsterService.getMyPendingFriendRequests(username);
+		if (users == null) {
+			users = new ArrayList<User>();
+		}
+		return users;
+	}
 }
