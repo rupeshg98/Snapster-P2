@@ -112,6 +112,7 @@ public class SnapsterController {
 	@GetMapping(path = "/addPhoto", produces = MediaType.APPLICATION_JSON_VALUE)
 	public void addPhoto(@RequestParam("file") File file, @RequestParam("caption")String caption, @RequestParam("username") String username) {
 		// TODO server-side validation here
+		System.out.println("Inside addPhoto: username: " + username + ", caption: " + caption + ", file: " + file);
 		String uuid = UuidCreator.getTimeOrdered().toString();
 		Photo photo = new Photo("user1", uuid, new Date());
 		snapsterService.insertPhoto(photo);

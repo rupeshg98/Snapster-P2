@@ -17,6 +17,7 @@ export class UserHomeComponent implements OnInit {
   userHomeForm: FormGroup;
   requestFriendForm: FormGroup;
   requestPostsForm: FormGroup;
+  requestPhotosForm: FormGroup;
   loading = false;
   submitted = false;
   returnUrl: string;
@@ -25,7 +26,8 @@ export class UserHomeComponent implements OnInit {
   myFriends:Object[]
   myPendingFriends:Object[]
   requestFriendList:Object[]
-  myPhotos:Object[]
+  requestPhotosList: Object[]
+  allPhotos:Object[]
   requestPostsList:Object[]
   myPosts:Object[]
   allPosts:Object[]
@@ -44,10 +46,11 @@ export class UserHomeComponent implements OnInit {
     this.myFriends = [];
     this.myPendingFriends = [];
     this.requestFriendList = [];
-    this.myPhotos = [];
+    this.allPhotos = [];
     this.requestPostsList = [];
     this.myPosts = [];
     this.allPosts = [];
+    this.requestPhotosList = []
   }
   ngOnInit() {
     
@@ -64,6 +67,10 @@ export class UserHomeComponent implements OnInit {
       this.requestPostsForm = this.formBuilder.group({
         message: ['', Validators.required],
       });
+      this.requestPhotosForm = this.formBuilder.group({
+        img: ['', Validators.required],
+        message: ['', Validators.required],
+      });
       
       // get return url from route parameters or default to '/'
       this.returnUrl = '/home';
@@ -74,6 +81,9 @@ export class UserHomeComponent implements OnInit {
   get f() { return this.userHomeForm.controls; }
   get requestFriendFunc() { return this.requestFriendForm.controls; }
   get sendPostMessageFunc() {return this.requestPostsForm.controls; }
+  get sendPhotoFunc(){
+    return this.requestPhotosForm.controls;
+  }
 
   viewMyInfo() {
     console.log("viewMyInfo Clicked");
@@ -91,14 +101,19 @@ export class UserHomeComponent implements OnInit {
     )
   }
 
-  viewMyPhotos(){
-    console.log("viewMyPhotos Clicked");
+  viewPhotos(includeFriends){
+    console.log("viewPhotos Clicked");
     let currentUser = localStorage.getItem("currentUser");
-    this.friendService.viewMyPhotos(currentUser).subscribe(
+    this.friendService.viewPhotos(currentUser, includeFriends).subscribe(
       (data) => {
         console.log(data)
         this.clearObjects();
-        this.myPhotos=data;
+        
+        if (includeFriends == "true"){
+          this.allPhotos=data;
+        } else {
+          //this.myPosts = data;
+        }
       },
       () => {
         console.log("sorry something went wrong")
@@ -145,6 +160,10 @@ export class UserHomeComponent implements OnInit {
     this.requestPostsList = [0]
   }
 
+  showPhotosForm(){
+    this.clearObjects();
+    this.requestPhotosList = [0]
+  }
   requestFriend(){
     console.log("addFriend Clicked");
     this.submitted = true;
@@ -171,9 +190,7 @@ export class UserHomeComponent implements OnInit {
 
   }  
   
-  viewMyFriendPhotos(){
-    console.log("viewMyPendingFriendRequest Clicked");
-  }
+ 
 
   approveFriend(friendUserName) {
     let currentUser = localStorage.getItem("currentUser");
@@ -229,7 +246,29 @@ export class UserHomeComponent implements OnInit {
     )
 
   }
-  
+  sendPhoto(){
+    console.log("Upload a Photo Clicked");
+    this.submitted = true;
+
+    // stop here if form is invalid
+    if (this.requestPhotosForm.invalid) {
+        return;
+    }
+
+    this.loading = true;
+    let currentUser = localStorage.getItem("currentUser");
+    this.friendService.sendPhoto(currentUser, this.sendPhotoFunc.img.value, this.sendPhotoFunc.message.value).subscribe(
+      (data) => {
+        console.log(data)
+        this.clearObjects();
+        //this.myPendingFriends = data;
+      },
+      () => {
+        console.log("sorry something went wrong")
+      }
+    )
+
+  }
   getPostMessages(includeFriends){
     console.log("getPostMessages Clicked");
     console.log("includeFrinds: " + includeFriends);

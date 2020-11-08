@@ -62,11 +62,11 @@
       "changeOrigin": true,
       "logLevel": "debug"
     },
-    "/getMyPhotos": {
-      "target": "http://18.217.143.242:8085/Snapster-P2/getMyPhotos",
+    "/getPhotos": {
+      "target": "http://18.217.143.242:8085/Snapster-P2/getPhotos",
       "secure": false,
       "pathRewrite": {
-        "^/getMyPhotos": ""
+        "^/getPhotos": ""
       },
       "changeOrigin": true,
       "logLevel": "debug"
@@ -85,6 +85,15 @@
       "secure": false,
       "pathRewrite": {
         "^/getPosts": ""
+      },
+      "changeOrigin": true,
+      "logLevel": "debug"
+    },
+    "/addPhoto": {
+      "target": "http://18.217.143.242:8085/Snapster-P2/addPhoto",
+      "secure": false,
+      "pathRewrite": {
+        "^/addPhoto": ""
       },
       "changeOrigin": true,
       "logLevel": "debug"

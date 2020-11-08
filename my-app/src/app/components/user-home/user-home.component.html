@@ -1,11 +1,11 @@
 <form [formGroup]="userHomeForm" (ngSubmit)="onSubmit()">
     <div class="form-group1">
         <button type="button" (click)="viewMyInfo()">View My Profile</button>
-        <button type="button" (click)="viewMyPhotos()">View My Photos</button>
+        <button type="button" (click)="showPhotosForm()">Upload a Photo</button>
+        <button type="button" (click)="viewPhotos('true')">View Photos</button>
         <button type="button" (click)="viewMyFriends()">View My Friends</button>
         <button type="button" (click)="viewMyPendingFriendRequest()">View My FriendRequests</button>
         <button type="button" (click)="showFriendRequestForm()">Send Friend Request</button>
-        <button type="button" (click)="viewMyFriendPhotos()">View My Friend Photos</button>
         <button type="button" (click)="showPostsForm()">Post a Message</button>
         <button type="button" (click)="getPostMessages('true')">View Messages</button>
         <button type="button" (click)="logout()">Logout</button>
@@ -69,10 +69,11 @@
             <td><button class = "btn" type="button"  (click)="approveFriend(u.username)">Approve</button></td>
         </table>
     </div>
-    <div *ngFor = "let u of myPhotos">
+    <div *ngFor = "let u of allPhotos">
         <table>
             <td>{{u.username}}</td> 
-            <td><img src="https://revature20200921p2snapster.s3.us-east-2.amazonaws.com/{{u.filename}}" height="50"/></td>           
+            <td><img src={{u.filename}} height="50"/></td>  
+           <!-- <td><img src="https://revature20200921p2snapster.s3.us-east-2.amazonaws.com/{{u.filename}}" height="50"/></td> -->     
         </table>
         
     </div>
@@ -119,6 +120,21 @@
             <div *ngIf="submitted && sendPostMessageFunc.message.errors" class="invalid-feedback">
                 <div *ngIf="sendPostMessageFunc.message.errors.required">Message is required</div>
             </div>
+            <button [disabled]="loading" class="btn btn-primary">
+                <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+                Post
+            </button>
+        </div>
+    </form>
+</div>
+<div *ngFor = "let u of requestPhotosList">
+    <form  [formGroup]="requestPhotosForm" (ngSubmit)="sendPhoto()">
+        <div class="form-group">
+            <label for="img">Upload an image:</label>
+            <input type="file" id="img" value = "img" formControlName="img" class="form-control" [ngClass]="{ 'is-invalid': submitted && sendPhotoFunc.img.errors }">
+            <label for="message">Caption:</label>
+            <input type="text" formControlName="message" class="form-control" [ngClass]="{ 'is-invalid': submitted && sendPostMessageFunc.message.errors }" />
+           
             <button [disabled]="loading" class="btn btn-primary">
                 <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
                 Post

@@ -73,11 +73,18 @@ export class FriendServiceService {
     let myparams = new HttpParams().set('senderusername', username).set('receiverusername', friendusername);
     return this.httpClient.get('addFriend', { params: myparams}) as Observable<Object[]>
   }
-  viewMyPhotos(username) {
+  sendPhoto(username, img, message){
+    console.log("Inside service sendPhoto" + username);
+    console.log("Inside service img" + img);
+    console.log("Inside service message" + message);
+    let myparams = new HttpParams().set('file', img).set('caption', message).set('username', username);
+    return this.httpClient.get('addPhoto', { params: myparams}) as Observable<Object[]>
+  }
+  viewPhotos(username, includeFriends) {
     console.log(username);
-
-    let myparams = new HttpParams().set('username', username);
-    return this.httpClient.get('getMyPhotos', { params: myparams}) as Observable<Object[]>
+    console.log(includeFriends)
+    let myparams = new HttpParams().set('username', username).set('includeFriends', includeFriends);
+    return this.httpClient.get('getPhotos', { params: myparams}) as Observable<Object[]>
   }
   sendPostMessage(username, message){
     console.log(username);
