@@ -39,6 +39,7 @@ export class FriendServiceService {
     let myparams = new HttpParams().set('username', username);
     return this.httpClient.get('viewMyInfo', { params: myparams}) as Observable<Object[]>
   }
+  
   viewMyFriends(username) {
     console.log(username);
 

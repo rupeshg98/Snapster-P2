@@ -16,4 +16,5 @@ public interface Snapster {
 	public void deleteRequest(FriendRequest req);
 	public ArrayList<FriendRequest> getFriendRequests(String receiver);
 	public ArrayList<User> getAllMyFriends(String username);
+	public ArrayList<User> getMyPendingFriendRequests(String username);
 }

@@ -251,4 +251,41 @@ public class SnapsterImpl implements Snapster {
 		return friends;
 	}
 
+	public ArrayList<User> getMyPendingFriendRequests(String username) {
+		System.out.println("In repository getMyPendingFriendRequests");
+		Session s = null;
+		Transaction tx = null;
+		ArrayList<User> friends = new ArrayList<User>();
+
+		try {
+			s = HibernateSessionFactory.getSession();
+			tx = s.beginTransaction();
+			List<FriendRequest> friendsIamNotApproved = s.createQuery("FROM FriendRequest WHERE receiver = :xyz")
+					.setParameter("xyz", username).getResultList();
+			tx.commit();
+			
+			if (friendsIamNotApproved != null) {
+				for (int i = 0; i < friendsIamNotApproved.size(); i++) {
+					FriendRequest friendRequest = friendsIamNotApproved.get(i);
+					if (!friendRequest.isApproved()) {
+						String friendUserName = friendRequest.getReceiver();
+						User user = getUser(friendUserName);
+						if (user != null) {
+							user.setPassword("");
+							friends.add(user);
+						}
+					}
+				}
+			}
+
+		} catch (HibernateException e) {
+			e.printStackTrace();
+			tx.rollback();
+		} finally {
+			s.close();
+		}
+
+		return friends;
+	}
+
 }

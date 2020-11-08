@@ -69,12 +69,16 @@ public class SnapsterService {
 		snapsterRepo.deleteRequest(req);
 	}
 	public ArrayList<FriendRequest> getFriendRequests(String receiver) {
-		System.out.println("In service getFriendRequests");
+		System.out.println("In service getMyPendingFriendRequests");
 		return snapsterRepo.getFriendRequests(receiver);
 		
 	}
 	
 	public ArrayList<User> getAllMyFriends(String username){
 		return snapsterRepo.getAllMyFriends(username);		
+	}
+	
+	public ArrayList<User> getMyPendingFriendRequests(String username){
+		return snapsterRepo.getMyPendingFriendRequests(username);
 	}
 }

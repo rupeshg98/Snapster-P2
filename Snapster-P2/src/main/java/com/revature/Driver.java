@@ -33,7 +33,8 @@ public class Driver {
 		//driver.insertRequest();
 		//driver.getFriendRequests();
 		//driver.addImageToS3();
-		driver.getAllMyFriends();
+		//driver.getAllMyFriends();
+		driver.getMyPendingFriendRequests();
 		
 	}
 
@@ -129,6 +130,17 @@ public class Driver {
 		System.out.println("No.of Users: " + users.size());
 		for (User user : users) {
 			System.out.println("Friend : " + user.getUsername() + ", FirstName: " + user.getFirstname());
+		}
+
+	}
+	
+	public void getMyPendingFriendRequests() {
+
+		ArrayList<User> users = service.getMyPendingFriendRequests("user1");
+
+		System.out.println("No.of Users: " + users.size());
+		for (User user : users) {
+			System.out.println("Friends Not Approved: " + user.getUsername() + ", FirstName: " + user.getFirstname());
 		}
 
 	}
