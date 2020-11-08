@@ -8,7 +8,7 @@ import {FriendServiceService} from 'src/app/services/friend-service.service';
 
 @Component(
 
-  { templateUrl: 'login.component.html'})
+  { templateUrl: 'login.component.html',  styleUrls: ['./login.component.css']})
 export class LoginComponent implements OnInit {
 
     loginForm: FormGroup;

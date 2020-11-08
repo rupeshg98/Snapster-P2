@@ -20,6 +20,12 @@ export class UserHomeComponent implements OnInit {
   submitted = false;
   returnUrl: string;
 
+  users:Object[]
+  myFriends:Object[]
+  myPendingFriends:Object[]
+  requestFriendList:Object[]
+  myPhotos:Object[]
+
   constructor(
       private formBuilder: FormBuilder,
       private route: ActivatedRoute,
@@ -41,10 +47,7 @@ export class UserHomeComponent implements OnInit {
       this.returnUrl = '/home';
       
   }
-  users:Object[]
-  myFriends:Object[]
-  myPendingFriends:Object[]
-  requestFriendList:Object[]
+
   // convenience getter for easy access to form fields
   get f() { return this.userHomeForm.controls; }
   get requestFriendFunc() { return this.requestFriendForm.controls; }
@@ -59,6 +62,7 @@ export class UserHomeComponent implements OnInit {
         this.myFriends = [];
         this.myPendingFriends = [];
         this.requestFriendList=[];
+        this.myPhotos=[];
       },
       () => {
         console.log("sorry something went wrong")
@@ -68,6 +72,20 @@ export class UserHomeComponent implements OnInit {
 
   viewMyPhotos(){
     console.log("viewMyPhotos Clicked");
+    let currentUser = localStorage.getItem("currentUser");
+    this.friendService.viewMyPhotos(currentUser).subscribe(
+      (data) => {
+        console.log(data)
+        this.users = [];
+        this.myFriends = [];
+        this.myPendingFriends = [];
+        this.requestFriendList=[];
+        this.myPhotos=data;
+      },
+      () => {
+        console.log("sorry something went wrong")
+      }
+    )
   }
 
   viewMyFriends(){
@@ -80,6 +98,7 @@ export class UserHomeComponent implements OnInit {
         this.users = [];
         this.myPendingFriends = [];
         this.requestFriendList=[];
+        this.myPhotos=[];
       },
       () => {
         console.log("sorry something went wrong")
@@ -96,6 +115,7 @@ export class UserHomeComponent implements OnInit {
         this.myFriends = [];
         this.users = [];
         this.requestFriendList=[];
+        this.myPhotos=[];
       },
       () => {
         console.log("sorry something went wrong")
@@ -108,6 +128,7 @@ export class UserHomeComponent implements OnInit {
     this.myPendingFriends = [];
     this.myFriends = [];
     this.users = [];
+    this.myPhotos=[];
     this.requestFriendList = [0];
   }
 
@@ -129,6 +150,7 @@ export class UserHomeComponent implements OnInit {
         this.myFriends = [];
         this.users = [];
         this.requestFriendList=[];
+        this.myPhotos=[];
       },
       () => {
         console.log("sorry something went wrong")

@@ -1,5 +1,5 @@
 <form [formGroup]="userHomeForm" (ngSubmit)="onSubmit()">
-    <div class="form-group">
+    <div class="form-group1">
         <button type="button" (click)="viewMyInfo()">View My Info</button>
         <button type="button" (click)="viewMyPhotos()">View My Photos</button>
         <button type="button" (click)="viewMyFriends()">View My Friends</button>
@@ -9,19 +9,25 @@
     </div>
     <div *ngFor = "let u of users">
         <table>
-            <td>{{u.username}}</td>
-            <td>{{u.email}}</td>
-            <td>{{u.firstname}}</td>
-            <td>{{u.lastname}}</td>
+            <tr>
+                <td>{{u.username}}</td>
+                <td>{{u.email}}</td>
+                <td>{{u.firstname}}</td>
+                <td>{{u.lastname}}</td>
+            </tr> 
+           
         </table>
     </div>
     <div *ngFor = "let u of myFriends">
         <table>
-            <td>{{u.username}}</td>
-            <td>{{u.email}}</td>
-            <td>{{u.firstname}}</td>
-            <td>{{u.lastname}}</td>
-            <td><button type="button" (click)="unFriend(u.username)">Unfriend</button></td>
+            <tr>
+                <td>{{u.username}}</td>
+                <td>{{u.email}}</td>
+                <td>{{u.firstname}}</td>
+                <td>{{u.lastname}}</td>
+                <td><button class = "btn" type="button" (click)="unFriend(u.username)">Unfriend</button></td>
+            </tr>
+           
         </table>
     </div>
     <div *ngFor = "let u of myPendingFriends">
@@ -30,8 +36,15 @@
             <td>{{u.email}}</td>
             <td>{{u.firstname}}</td>
             <td>{{u.lastname}}</td>
-            <td><button type="button" (click)="approveFriend(u.username)">Approve</button></td>
+            <td><button class = "btn" type="button"  (click)="approveFriend(u.username)">Approve</button></td>
         </table>
+    </div>
+    <div *ngFor = "let u of myPhotos">
+        <table>
+            <td>{{u.username}}</td> 
+            <td><img src="{{u.filename}}" width="50" height="50"/></td>           
+        </table>
+        
     </div>
 </form>
 

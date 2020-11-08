@@ -1,9 +1,45 @@
-mat-card {
-    max-width: 400px;
-    margin: 2em auto;
-    text-align: center;
-  }
-  
-  mat-form-field {
-    display: block;
-  }
+form{
+  width: 382px;
+	overflow: hidden;
+	margin: auto;
+	margin: 20 0 0 450px;
+	padding: 80px;
+	background: royalblue;
+	border-radius: 15px;
+}
+
+h2{
+  text-align: center;
+  position: relative;
+  top: 55px;
+
+}
+button:hover {
+	background-color: #6abadeba;
+}
+
+button {
+	width: 300px;
+	height: 30px;
+	border: none;
+	border-radius: 17px;
+	padding-left: 7px;
+	position: relative;
+	left: 40px; top : 10px; top : 10px;
+	color: blue;
+	top: 10px;
+}
+.labels{
+  position: relative;
+  left: 50px;
+  color: #002244;
+	font-family: "Times New Roman", Times, serif;
+	font-size: 17px;
+	font-weight: bold;
+
+}
+.form-control{
+  position: relative;
+  left: 60px;
+}
+
