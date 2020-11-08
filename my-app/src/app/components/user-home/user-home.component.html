@@ -6,6 +6,17 @@
         <button type="button" (click)="viewMyPendingFriendRequest()">View My FriendRequests</button>
         <button type="button" (click)="showFriendRequestForm()">Send Friend Request</button>
         <button type="button" (click)="viewMyFriendPhotos()">View My Friend Photos</button>
+        <button type="button" (click)="logout()">Logout</button>
+    </div>
+    <div *ngIf="users.length > 0">
+        <table>
+            <tr>
+                <td>{{"User Name"}}</td>
+                <td>{{"Email"}}</td>
+                <td>{{"First Name"}}</td>
+                <td>{{"Last Name"}}</td>
+            </tr> 
+        </table>
     </div>
     <div *ngFor = "let u of users">
         <table>
@@ -15,7 +26,7 @@
                 <td>{{u.firstname}}</td>
                 <td>{{u.lastname}}</td>
             </tr> 
-           
+        
         </table>
     </div>
     <div *ngFor = "let u of myFriends">

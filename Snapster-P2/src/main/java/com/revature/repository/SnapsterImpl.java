@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 import com.revature.model.FriendRequest;
 import com.revature.model.Photo;
 import com.revature.model.User;
+import com.revature.model.UserPosts;
 import com.revature.utility.HibernateSessionFactory;
 
 @Repository(value = "SnapsterRepo")
@@ -186,6 +187,7 @@ public class SnapsterImpl implements Snapster {
 		return returnValue;
 	}
 
+	// This is not used and need to be removed
 	public ArrayList<FriendRequest> getFriendRequests(String receiver) {
 		System.out.println("In repository getFriendRequests");
 		Session s = null;
@@ -298,6 +300,63 @@ public class SnapsterImpl implements Snapster {
 		}
 
 		return friends;
+	}
+	
+	public boolean insertUserPosts(UserPosts post) {
+
+		Session s = null;
+		Transaction tx = null;
+		boolean returnValue = false;
+		try {
+			s = HibernateSessionFactory.getSession();
+			tx = s.beginTransaction();
+			s.save(post);
+			tx.commit();
+			returnValue = true;
+		} catch (HibernateException e) {
+			e.printStackTrace();
+			tx.rollback();
+		} finally {
+			s.close();
+		}
+		
+		return returnValue;
+	}
+
+	public ArrayList<UserPosts> getAllUserPosts(String username, boolean includeFriends) {
+
+		Session s = null;
+		Transaction tx = null;
+		ArrayList<UserPosts> userPosts = new ArrayList<UserPosts>();
+		
+		try {
+		    String query = "";
+		    if (includeFriends) {
+		    	query = "FROM UserPosts WHERE where username in ("+
+			    " select receiver as username from friendrequests where sender=:xyz and approval = true "+
+			    " union " +
+			    " select sender as username from friendrequests where receiver=:xyz and approval = true " +
+			    " union select :xyz as username) " +
+			    " order by senttime ";
+		    } else {
+		    	query = "FROM UserPosts WHERE where username=:xyz order by senttime ";
+		    }
+			s = HibernateSessionFactory.getSession();
+			tx = s.beginTransaction();
+
+			List<UserPosts> userposts2 = s.createQuery(query).setParameter("xyz", username)
+					.getResultList();
+
+			userPosts = new ArrayList<UserPosts>(userposts2);
+
+			tx.commit();
+		} catch (HibernateException e) {
+			e.printStackTrace();
+			tx.rollback();
+		} finally {
+			s.close();
+		}
+		return userPosts;
 	}
 
 }

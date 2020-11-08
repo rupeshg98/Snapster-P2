@@ -1,5 +1,5 @@
 import { Component, OnInit, ContentChildren } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators  } from '@angular/forms';
 import {FriendServiceService} from 'src/app/services/friend-service.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import {ViewMyDetailsComponent} from 'src/app/components/view-my-details/view-my-details.component';
@@ -37,6 +37,10 @@ export class UserHomeComponent implements OnInit {
 
   ngOnInit() {
     
+      let currentUser = localStorage.getItem("currentUser");
+      if (currentUser == null) {
+          this.router.navigate(["/login"])
+      }
       this.userHomeForm = this.formBuilder.group({
           
       });
@@ -179,6 +183,10 @@ export class UserHomeComponent implements OnInit {
     console.log("approveFriend Clicked");
   }
 
+  logout(){
+    let currentUser = localStorage.removeItem("currentUser");
+    this.router.navigate(["/login"]);
+  }
   unFriend(friendUserName) {
     let currentUser = localStorage.getItem("currentUser");
     this.friendService.unFriend(currentUser,friendUserName).subscribe(

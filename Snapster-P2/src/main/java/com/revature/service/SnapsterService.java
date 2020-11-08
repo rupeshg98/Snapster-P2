@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import com.revature.model.FriendRequest;
 import com.revature.model.Photo;
 import com.revature.model.User;
+import com.revature.model.UserPosts;
 import com.revature.repository.Snapster;
 import com.revature.repository.SnapsterImpl;
 
@@ -81,5 +82,9 @@ public class SnapsterService {
 	
 	public ArrayList<User> getMyPendingFriendRequests(String username){
 		return snapsterRepo.getMyPendingFriendRequests(username);
+	}
+	
+	public ArrayList<UserPosts> getAllUserPosts(String username, boolean includeFriends) {
+		return snapsterRepo.getAllUserPosts(username, includeFriends);
 	}
 }

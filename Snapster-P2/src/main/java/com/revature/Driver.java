@@ -11,6 +11,7 @@ import com.github.f4b6a3.uuid.UuidCreator;
 import com.revature.model.FriendRequest;
 import com.revature.model.Photo;
 import com.revature.model.User;
+import com.revature.model.UserPosts;
 import com.revature.service.S3Service;
 import com.revature.service.SnapsterService;
 
@@ -35,8 +36,9 @@ public class Driver {
 		//driver.getFriendRequests();
 		//driver.addImageToS3();
 		//driver.getAllMyFriends();
-		driver.getMyPendingFriendRequests();
+		//driver.getMyPendingFriendRequests();
 		//driver.uploadImageFullProcess();
+		driver.getAllUserPosts();
 	}
 
 	public void getFriendRequests() {
@@ -134,7 +136,6 @@ public class Driver {
 	}
 	
 	public void getMyPendingFriendRequests() {
-
 		ArrayList<User> users = service.getMyPendingFriendRequests("rupesh");
 
 		System.out.println("No.of Users: " + users.size());
@@ -156,4 +157,20 @@ public class Driver {
 		s3service.putObject(image, uuid);
 	}
 	
+	public void getAllUserPosts() {
+		ArrayList<UserPosts> userPosts = service.getAllUserPosts("user2",true);
+
+		System.out.println("No.of Posts: " + userPosts.size());
+		for (UserPosts userPost : userPosts) {
+			System.out.println("Posts: " + userPost.getUsername() + ", post: " + userPost.getPost() + ", time: " + userPost.getSenttime());
+		}
+		
+		
+		userPosts = service.getAllUserPosts("user2",false);
+
+		System.out.println("No.of Posts: " + userPosts.size());
+		for (UserPosts userPost : userPosts) {
+			System.out.println("Posts: " + userPost.getUsername() + ", post: " + userPost.getPost() + ", time: " + userPost.getSenttime());
+		}
+	}
 }

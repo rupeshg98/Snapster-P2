@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import com.revature.model.FriendRequest;
 import com.revature.model.Photo;
 import com.revature.model.User;
+import com.revature.model.UserPosts;
 
 public interface Snapster {
 	public void insertUser(User user);
@@ -17,4 +18,6 @@ public interface Snapster {
 	public ArrayList<FriendRequest> getFriendRequests(String receiver);
 	public ArrayList<User> getAllMyFriends(String username);
 	public ArrayList<User> getMyPendingFriendRequests(String username);
+	public boolean insertUserPosts(UserPosts post);
+	public ArrayList<UserPosts> getAllUserPosts(String username, boolean includeFriends);
 }
