@@ -16,6 +16,7 @@ export class UserHomeComponent implements OnInit {
 
   userHomeForm: FormGroup;
   requestFriendForm: FormGroup;
+  requestPostsForm: FormGroup;
   loading = false;
   submitted = false;
   returnUrl: string;
@@ -25,6 +26,9 @@ export class UserHomeComponent implements OnInit {
   myPendingFriends:Object[]
   requestFriendList:Object[]
   myPhotos:Object[]
+  requestPostsList:Object[]
+  myPosts:Object[]
+  allPosts:Object[]
 
   constructor(
       private formBuilder: FormBuilder,
@@ -35,6 +39,16 @@ export class UserHomeComponent implements OnInit {
       
   }
 
+  clearObjects(){
+    this.users = [];
+    this.myFriends = [];
+    this.myPendingFriends = [];
+    this.requestFriendList = [];
+    this.myPhotos = [];
+    this.requestPostsList = [];
+    this.myPosts = [];
+    this.allPosts = [];
+  }
   ngOnInit() {
     
       let currentUser = localStorage.getItem("currentUser");
@@ -47,6 +61,10 @@ export class UserHomeComponent implements OnInit {
       this.requestFriendForm = this.formBuilder.group({
         friendusername: ['', Validators.required],
       });
+      this.requestPostsForm = this.formBuilder.group({
+        message: ['', Validators.required],
+      });
+      
       // get return url from route parameters or default to '/'
       this.returnUrl = '/home';
       
@@ -55,6 +73,7 @@ export class UserHomeComponent implements OnInit {
   // convenience getter for easy access to form fields
   get f() { return this.userHomeForm.controls; }
   get requestFriendFunc() { return this.requestFriendForm.controls; }
+  get sendPostMessageFunc() {return this.requestPostsForm.controls; }
 
   viewMyInfo() {
     console.log("viewMyInfo Clicked");
@@ -62,11 +81,9 @@ export class UserHomeComponent implements OnInit {
     this.friendService.viewMyInfo(currentUser).subscribe(
       (data) => {
         console.log(data)
+        this.clearObjects();
+        this.getPostMessages(false);
         this.users = data;
-        this.myFriends = [];
-        this.myPendingFriends = [];
-        this.requestFriendList=[];
-        this.myPhotos=[];
       },
       () => {
         console.log("sorry something went wrong")
@@ -98,11 +115,8 @@ export class UserHomeComponent implements OnInit {
     this.friendService.viewMyFriends(currentUser).subscribe(
       (data) => {
         console.log(data)
+        this.clearObjects();
         this.myFriends = data;
-        this.users = [];
-        this.myPendingFriends = [];
-        this.requestFriendList=[];
-        this.myPhotos=[];
       },
       () => {
         console.log("sorry something went wrong")
@@ -115,11 +129,8 @@ export class UserHomeComponent implements OnInit {
     this.friendService.viewMyPendingFriendRequest(currentUser).subscribe(
       (data) => {
         console.log(data)
+        this.clearObjects();
         this.myPendingFriends = data;
-        this.myFriends = [];
-        this.users = [];
-        this.requestFriendList=[];
-        this.myPhotos=[];
       },
       () => {
         console.log("sorry something went wrong")
@@ -129,11 +140,12 @@ export class UserHomeComponent implements OnInit {
   }  
 
   showFriendRequestForm(){
-    this.myPendingFriends = [];
-    this.myFriends = [];
-    this.users = [];
-    this.myPhotos=[];
+    this.clearObjects();
     this.requestFriendList = [0];
+  }
+  showPostsForm(){
+    this.clearObjects();
+    this.requestPostsList = [0]
   }
 
   requestFriend(){
@@ -150,11 +162,8 @@ export class UserHomeComponent implements OnInit {
     this.friendService.requestFriend(currentUser, this.requestFriendFunc.friendusername.value).subscribe(
       (data) => {
         console.log(data)
+        this.clearObjects();
         this.myPendingFriends = data;
-        this.myFriends = [];
-        this.users = [];
-        this.requestFriendList=[];
-        this.myPhotos=[];
       },
       () => {
         console.log("sorry something went wrong")
@@ -200,8 +209,52 @@ export class UserHomeComponent implements OnInit {
     )
     console.log("unFriend Clicked");
   }
+  sendPostMessage(){
+    console.log("sendPostMessage Clicked");
+    this.submitted = true;
+
+    // stop here if form is invalid
+    if (this.requestPostsForm.invalid) {
+        return;
+    }
+
+    this.loading = true;
+    let currentUser = localStorage.getItem("currentUser");
+    this.friendService.sendPostMessage(currentUser, this.sendPostMessageFunc.message.value).subscribe(
+      (data) => {
+        console.log(data)
+        this.clearObjects();
+        //this.myPendingFriends = data;
+      },
+      () => {
+        console.log("sorry something went wrong")
+      }
+    )
+
+  }
+  
+  getPostMessages(includeFriends){
+    console.log("getPostMessages Clicked");
+    console.log("includeFrinds: " + includeFriends);
+    let currentUser = localStorage.getItem("currentUser");
+    this.friendService.getPostMessages(currentUser,includeFriends).subscribe(
+      (data) => {
+        console.log(data)
+        this.clearObjects();
+        if (includeFriends == "true"){
+          this.allPosts = data;
+        } else {
+          this.myPosts = data;
+        }
+      },
+      () => {
+        console.log("sorry something went wrong")
+      }
+    )
+  }
+  
   onSubmit() {
-      this.submitted = true;
+      //this.submitted = true;
 
       // stop here if form is invalid
       if (this.userHomeForm.invalid) {

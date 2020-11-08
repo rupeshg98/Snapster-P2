@@ -79,5 +79,16 @@ export class FriendServiceService {
     let myparams = new HttpParams().set('username', username);
     return this.httpClient.get('getMyPhotos', { params: myparams}) as Observable<Object[]>
   }
-  
+  sendPostMessage(username, message){
+    console.log(username);
+    console.log(message);
+    let myparams = new HttpParams().set('username', username).set('post', message);
+    return this.httpClient.get('addPost', { params: myparams}) as Observable<Object[]>
+  }
+  getPostMessages(username, includeFriends){
+    console.log(username);
+    console.log(includeFriends);
+    let myparams = new HttpParams().set('username', username).set('includeFriends', includeFriends);
+    return this.httpClient.get('getPosts', { params: myparams}) as Observable<Object[]>
+  }
 }

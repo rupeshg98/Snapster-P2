@@ -1,11 +1,13 @@
 <form [formGroup]="userHomeForm" (ngSubmit)="onSubmit()">
     <div class="form-group1">
-        <button type="button" (click)="viewMyInfo()">View My Info</button>
+        <button type="button" (click)="viewMyInfo()">View My Profile</button>
         <button type="button" (click)="viewMyPhotos()">View My Photos</button>
         <button type="button" (click)="viewMyFriends()">View My Friends</button>
         <button type="button" (click)="viewMyPendingFriendRequest()">View My FriendRequests</button>
         <button type="button" (click)="showFriendRequestForm()">Send Friend Request</button>
         <button type="button" (click)="viewMyFriendPhotos()">View My Friend Photos</button>
+        <button type="button" (click)="showPostsForm()">Post a Message</button>
+        <button type="button" (click)="getPostMessages('true')">View Messages</button>
         <button type="button" (click)="logout()">Logout</button>
     </div>
     <div *ngIf="users.length > 0">
@@ -26,8 +28,15 @@
                 <td>{{u.firstname}}</td>
                 <td>{{u.lastname}}</td>
             </tr> 
-        
         </table>
+        <div *ngFor = "let p of myPosts">
+            <table>
+                <tr>
+                    <td>{{p.post}}</td>
+                    <td>{{p.senttime}}</td>
+                </tr> 
+            </table>
+        </div>
     </div>
     <div *ngFor = "let u of myFriends">
         <table>
@@ -57,6 +66,13 @@
         </table>
         
     </div>
+    <div *ngFor = "let u of myPhotos">
+        <table>
+            <td>{{u.username}}</td> 
+            <td><img src="https://revature20200921p2snapster.s3.us-east-2.amazonaws.com/{{u.filename}}" height="50"/></td>           
+        </table>
+        
+    </div>
 </form>
 
 <div *ngFor = "let u of requestFriendList">
@@ -70,6 +86,21 @@
             <button [disabled]="loading" class="btn btn-primary">
                 <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
                 Request
+            </button>
+        </div>
+    </form>
+</div>
+<div *ngFor = "let u of requestPostsList">
+    <form  [formGroup]="requestPostsForm" (ngSubmit)="sendPostMessage()">
+        <div class="form-group">
+            <label for="message">Message</label>
+            <input type="text" formControlName="message" class="form-control" [ngClass]="{ 'is-invalid': submitted && sendPostMessageFunc.message.errors }" />
+            <div *ngIf="submitted && sendPostMessageFunc.message.errors" class="invalid-feedback">
+                <div *ngIf="sendPostMessageFunc.message.errors.required">Message is required</div>
+            </div>
+            <button [disabled]="loading" class="btn btn-primary">
+                <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+                Post
             </button>
         </div>
     </form>

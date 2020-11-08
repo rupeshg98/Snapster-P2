@@ -70,5 +70,23 @@
       },
       "changeOrigin": true,
       "logLevel": "debug"
+    },
+    "/addPost": {
+      "target": "http://18.217.143.242:8085/Snapster-P2/addPost",
+      "secure": false,
+      "pathRewrite": {
+        "^/addPost": ""
+      },
+      "changeOrigin": true,
+      "logLevel": "debug"
+    },
+    "/getPosts": {
+      "target": "http://18.217.143.242:8085/Snapster-P2/getPosts",
+      "secure": false,
+      "pathRewrite": {
+        "^/getPosts": ""
+      },
+      "changeOrigin": true,
+      "logLevel": "debug"
     }
   }

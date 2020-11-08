@@ -123,9 +123,9 @@ public class SnapsterController {
 			@RequestParam("includeFriends") String includeFriends) {
 		ArrayList<UserPosts> userPosts = null;
 		if (includeFriends.equals("true")) {
-			snapsterService.getAllUserPosts(username, true);
+			userPosts = snapsterService.getAllUserPosts(username, true);
 		} else {
-			snapsterService.getAllUserPosts(username, false);
+			userPosts = snapsterService.getAllUserPosts(username, false);
 		}
 		if (userPosts == null) {
 			userPosts = new ArrayList<UserPosts>();
