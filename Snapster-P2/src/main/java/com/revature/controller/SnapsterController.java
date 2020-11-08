@@ -28,7 +28,7 @@ public class SnapsterController {
 	}
 
 	@GetMapping(path = "/viewMyInfo", produces = MediaType.APPLICATION_JSON_VALUE)
-	public List<User> viewMyinfo(@RequestParam("username") String username) {
+	public List<User> viewMyInfo(@RequestParam("username") String username) {
 		User user = snapsterService.getUser(username);
 		List<User> users = new ArrayList<User>();
 		if (user != null) {
