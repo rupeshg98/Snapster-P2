@@ -123,7 +123,7 @@ public class SnapsterController {
 //		return photo;
 	}
 */
-	@PostMapping(path = "/addPhoto")
+	@PostMapping(path = "/addPhoto", consumes = MediaType.ALL_VALUE)
 	public void addPhoto(HttpServletRequest request, @RequestBody Object file) {
 		String caption = request.getParameter("caption");
 		String username = request.getParameter("username");

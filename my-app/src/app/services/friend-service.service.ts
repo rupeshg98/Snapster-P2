@@ -86,8 +86,7 @@ export class FriendServiceService {
     header.append('Content-Type','multipart/form-data');
     header.append('Accept','application/json');
     let myparams = new HttpParams().set('caption', message).set('username', username);
-    return this.httpClient.post('addPhoto', img, {params: myparams}) as Observable<Object[]>
-
+    return this.httpClient.post('addPhoto', img, { headers: header}) 
   }
   viewPhotos(username, includeFriends) {
     console.log(username);
