@@ -4,6 +4,7 @@ import {HttpClient} from '@angular/common/http';
 import {HttpParams} from '@angular/common/http';
 import {Observable} from 'rxjs/internal/observable';
 import { map } from 'rxjs/operators';
+import { bindCallback } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -74,11 +75,20 @@ export class FriendServiceService {
     return this.httpClient.get('addFriend', { params: myparams}) as Observable<Object[]>
   }
   sendPhoto(username, img, message){
-    console.log("Inside service sendPhoto " + username);
-    console.log("Inside service img " + img);
-    console.log("Inside service message " + message);
-    let myparams = new HttpParams().set('file', img).set('caption', message).set('username', username);
-    return this.httpClient.get('addPhoto', { params: myparams}) as Observable<Object[]>
+
+    console.log("Inside service sendPhoto" + username);
+    console.log("Inside service img" + img.value);
+    console.log("Inside service message" + message);
+    let photoData:FormData = new FormData();
+    let blobData = new File(img, "AA");
+    photoData.append('file', blobData, "AA");
+    photoData.append('username',username,username);
+    let header = new Headers();
+    header.append('Content-Type','multipart/form-data');
+    header.append('Accept','application/json');
+    //let myparams = new HttpParams().set('caption', message).set('username', username);
+    return this.httpClient.post('addPhoto', photoData) as Observable<Object[]>
+
   }
   viewPhotos(username, includeFriends) {
     console.log(username);

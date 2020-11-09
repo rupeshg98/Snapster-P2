@@ -5,6 +5,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import {ViewMyDetailsComponent} from 'src/app/components/view-my-details/view-my-details.component';
 
 import { first } from 'rxjs/operators';
+import { compileComponentFromMetadata } from '@angular/compiler';
 @Component({
   selector: 'app-user-home',
   templateUrl: './user-home.component.html',
@@ -50,7 +51,7 @@ export class UserHomeComponent implements OnInit {
     this.requestPostsList = [];
     this.myPosts = [];
     this.allPosts = [];
-    this.requestPhotosList = []
+    this.requestPhotosList = [];
   }
   ngOnInit() {
     
@@ -208,6 +209,7 @@ export class UserHomeComponent implements OnInit {
 
   logout(){
     let currentUser = localStorage.removeItem("currentUser");
+    this.clearObjects();
     this.router.navigate(["/login"]);
   }
   unFriend(friendUserName) {
@@ -246,6 +248,15 @@ export class UserHomeComponent implements OnInit {
     )
 
   }
+
+  onPhotoFileSelect(event){
+    if (event.target.files.length > 0){
+      const file = event.target.files[0];
+      console.log("inside OnPhotoFileSelect: " + file);
+      this.requestPhotosForm.get('img').setValue(file);
+    }
+  }
+
   sendPhoto(){
     console.log("Upload a Photo Clicked");
     this.submitted = true;
@@ -257,7 +268,8 @@ export class UserHomeComponent implements OnInit {
 
     this.loading = true;
     let currentUser = localStorage.getItem("currentUser");
-    this.friendService.sendPhoto(currentUser, this.sendPhotoFunc.img.value, this.sendPhotoFunc.message.value).subscribe(
+ 
+    this.friendService.sendPhoto(currentUser, this.requestPhotosForm.get('img'), this.sendPhotoFunc.message.value).subscribe(
       (data) => {
         console.log(data)
         this.clearObjects();
@@ -269,6 +281,7 @@ export class UserHomeComponent implements OnInit {
     )
 
   }
+
   getPostMessages(includeFriends){
     console.log("getPostMessages Clicked");
     console.log("includeFrinds: " + includeFriends);
@@ -305,7 +318,7 @@ export class UserHomeComponent implements OnInit {
       this.loading = true;
 
       console.log("Button clicked: ");
-      
+      this.clearObjects();
       //let responseData = this.friendService.validateLogin(this.f.username.value, this.f.password.value);
 
       //console.log("Inside logincomponentts response Data: " + responseData);
