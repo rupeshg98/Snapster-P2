@@ -8,6 +8,7 @@ import java.util.List;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -109,7 +110,7 @@ public class SnapsterController {
 	}
 	
 
-	@GetMapping(path = "/addPhoto", produces = MediaType.APPLICATION_JSON_VALUE)
+	@PostMapping(path = "/addPhoto", produces = MediaType.APPLICATION_JSON_VALUE)
 	public void addPhoto(@RequestParam("file") File file, @RequestParam("caption") String caption, @RequestParam("username") String username) {
 		// TODO server-side validation here
 		//System.out.println("Inside addPhoto: username: " + username + ", caption: " + caption + ", file: " + file);

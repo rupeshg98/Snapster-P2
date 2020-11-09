@@ -32,6 +32,7 @@ export class UserHomeComponent implements OnInit {
   requestPostsList:Object[]
   myPosts:Object[]
   allPosts:Object[]
+  selectedPhotoFile:File
 
   constructor(
       private formBuilder: FormBuilder,
@@ -251,9 +252,9 @@ export class UserHomeComponent implements OnInit {
 
   onPhotoFileSelect(event){
     if (event.target.files.length > 0){
-      const file = event.target.files[0];
-      console.log("inside OnPhotoFileSelect: " + file);
-      this.requestPhotosForm.get('img').setValue(file);
+      this.selectedPhotoFile = event.target.files[0];
+      console.log("inside OnPhotoFileSelect: " + this.selectedPhotoFile);
+    
     }
   }
 
@@ -262,14 +263,14 @@ export class UserHomeComponent implements OnInit {
     this.submitted = true;
 
     // stop here if form is invalid
-    if (this.requestPhotosForm.invalid) {
-        return;
-    }
+    // if (this.requestPhotosForm.invalid) {
+    //     return;
+    // }
 
     this.loading = true;
     let currentUser = localStorage.getItem("currentUser");
  
-    this.friendService.sendPhoto(currentUser, this.requestPhotosForm.get('img'), this.sendPhotoFunc.message.value).subscribe(
+    this.friendService.sendPhoto(currentUser, this.selectedPhotoFile, this.sendPhotoFunc.message.value).subscribe(
       (data) => {
         console.log(data)
         this.clearObjects();
