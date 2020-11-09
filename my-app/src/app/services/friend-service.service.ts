@@ -3,6 +3,7 @@ import {HttpClient} from '@angular/common/http';
 //import {HttpHeaders} from '@angular/common/http';
 import {HttpParams} from '@angular/common/http';
 import {Observable} from 'rxjs/internal/observable';
+
 import { map } from 'rxjs/operators';
 import { bindCallback } from 'rxjs';
 
@@ -82,11 +83,11 @@ export class FriendServiceService {
     // let photoData:FormData = new FormData();
     // photoData.append('file', img, img.name);
     // photoData.append('username',username,username);
-    let header = new Headers();
-    header.append('Content-Type','multipart/form-data');
-    header.append('Accept','application/json');
+    //let header = new Headers();
+  
     let myparams = new HttpParams().set('caption', message).set('username', username);
-    return this.httpClient.post('addPhoto', img, { headers: header}) 
+    return this.httpClient.post('addPhoto', img, {params: myparams})  
+
   }
   viewPhotos(username, includeFriends) {
     console.log(username);
