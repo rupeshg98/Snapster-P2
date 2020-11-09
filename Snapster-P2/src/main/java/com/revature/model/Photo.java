@@ -35,10 +35,11 @@ public class Photo implements Serializable{
 		super();
 	}
 
-	public Photo(String username, String filename, Date createdDate) {
+	public Photo(String username, String filename, String caption, Date createdDate) {
 		super();
 		this.username = username;
 		this.filename = filename;
+		this.caption = caption;
 		this.created_date = createdDate;
 	}
 

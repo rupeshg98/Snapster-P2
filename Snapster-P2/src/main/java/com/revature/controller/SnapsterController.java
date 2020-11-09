@@ -110,13 +110,14 @@ public class SnapsterController {
 	
 
 	@GetMapping(path = "/addPhoto", produces = MediaType.APPLICATION_JSON_VALUE)
-	public void addPhoto(@RequestParam("file") File file, @RequestParam("caption") String caption, @RequestParam("username") String username) {
+	public Photo addPhoto(@RequestParam("file") File file, @RequestParam("caption") String caption, @RequestParam("username") String username) {
 		// TODO server-side validation here
 		//System.out.println("Inside addPhoto: username: " + username + ", caption: " + caption + ", file: " + file);
 		String uuid = UuidCreator.getTimeOrdered().toString();
-		Photo photo = new Photo(username, uuid, new Date());
+		Photo photo = new Photo(username, uuid, caption, new Date());
 		//s3service.putObject(file, uuid);
-		snapsterService.insertPhoto(photo);
+		//snapsterService.insertPhoto(photo);
+		return photo;
 	}
 
 	@GetMapping(path = "/addPost", produces = MediaType.APPLICATION_JSON_VALUE)

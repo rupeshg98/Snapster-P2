@@ -97,9 +97,9 @@ public class Driver {
 	}
 
 	public void insertPhoto() {
-		Photo photo = new Photo("user1", "PhotoLocation1", new Date());
-		Photo photo2 = new Photo("user1", "PhotoLocation2", new Date());
-		Photo photo3 = new Photo("user1", "PhotoLocation3", new Date());
+		Photo photo = new Photo("user1", "PhotoLocation1", "caption", new Date());
+		Photo photo2 = new Photo("user1", "PhotoLocation2", "caption", new Date());
+		Photo photo3 = new Photo("user1", "PhotoLocation3", "caption", new Date());
 
 		service.insertPhoto(photo);
 		service.insertPhoto(photo2);
@@ -152,7 +152,7 @@ public class Driver {
 		
 		//Photo object is created with username, new filename, and date
 		String uuid = UuidCreator.getTimeOrdered().toString();
-		Photo photo = new Photo("user1", uuid, new Date());
+		Photo photo = new Photo("user1", uuid, "caption", new Date());
 		//Photo is inserted into database
 		service.insertPhoto(photo);
 		//Photo is added to S3 bucket
