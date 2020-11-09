@@ -12,7 +12,7 @@
     </div>
     <div *ngIf="myProfile.length > 0">
         <table>
-            <tr>
+            <tr class = "headerRow">
                 <td>{{"User Name"}}</td>
                 <td>{{"Email"}}</td>
                 <td>{{"First Name"}}</td>
@@ -39,8 +39,8 @@
         </div>
     </div>
     <div *ngIf="myFriends.length > 0">
-        <table>
-            <tr>
+        <table id = "friendsTable">
+            <tr class = "headerRow">
                 <td>{{"User Name"}}</td>
                 <td>{{"Email"}}</td>
                 <td>{{"First Name"}}</td>
@@ -79,7 +79,7 @@
     </div>
     <div *ngIf="allPosts.length > 0">
         <table>
-            <tr>
+            <tr class = "headerRow">
                 <td>{{"User Name"}}</td>
                 <td>{{"Message"}}</td>
                 <td>{{"Sent Time"}}</td>
@@ -115,12 +115,12 @@
 <div *ngFor = "let u of requestPostsList">
     <form  [formGroup]="requestPostsForm" (ngSubmit)="sendPostMessage()">
         <div class="form-group">
-            <label for="message">Message</label>
-            <input type="text" formControlName="message" class="form-control" [ngClass]="{ 'is-invalid': submitted && sendPostMessageFunc.message.errors }" />
+            <label for="message" id = "myPostLabel">What's on your mind?</label>
+            <input type="text" id = "posts" formControlName="message" class="form-control" [ngClass]="{ 'is-invalid': submitted && sendPostMessageFunc.message.errors }" />
             <div *ngIf="submitted && sendPostMessageFunc.message.errors" class="invalid-feedback">
                 <div *ngIf="sendPostMessageFunc.message.errors.required">Message is required</div>
             </div>
-            <button [disabled]="loading" class="btn btn-primary">
+            <button id = "postBtn"[disabled]="loading" class="btn btn-primary">
                 <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
                 Post
             </button>

@@ -57,3 +57,33 @@ table tr:nth-child(even) {
 .btn:hover{
 	background-color: white;
 }
+
+#posts{
+	
+	
+	position: relative; top:20px; right: 195px;
+	
+	width: 700px;
+	margin: auto;
+	
+}
+
+#postBtn{
+	position: relative;right: 400px; top: 400px; 
+}
+#myPostLabel{
+	color: black;
+	font-family: "Times New Roman", Times, serif; 
+	font-weight: bold;
+	font-size: 20px;
+}
+
+.headerRow{
+	color: black;
+	font-family: "Times New Roman", Times, serif; 
+	font-weight: bold;
+	font-size: 20px;
+}
+#friendsTable{
+	table-layout: fixed ;
+}

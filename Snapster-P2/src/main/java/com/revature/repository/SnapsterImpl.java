@@ -349,9 +349,9 @@ public class SnapsterImpl implements Snapster {
 			    " select f.sender as username from friendrequests as f where receiver=:xyz and approval = true " +
 			    " union select :xyz as username" + 
 			    " ) " +
-			    " order by created_date ";
+			    " order by created_date desc ";
 		    } else {
-		    	query = "select * from photos where username=:xyz order by created_date ";
+		    	query = "select * from photos where username=:xyz order by created_date desc";
 		    }
 		    
 			s = HibernateSessionFactory.getSession();
