@@ -13,12 +13,12 @@ import com.revature.repository.S3RepoImpl;
 
 public class S3Service {
 	
-	private S3Repo s3repo;
+	private S3Repo s3repo = new S3RepoImpl();
 	
-	@Autowired
-	public void setS3epository(S3RepoImpl s3repoImpl) {
-		this.s3repo = s3repoImpl;
-	}
+//	@Autowired
+//	public void setS3epository(S3RepoImpl s3repoImpl) {
+//		this.s3repo = s3repoImpl;
+//	}
 	
 	public PutObjectResult putObject(File file, String uuid) {
 		return s3repo.putObject(file, uuid);
