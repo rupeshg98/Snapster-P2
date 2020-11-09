@@ -17,6 +17,7 @@
                 <td>{{"Email"}}</td>
                 <td>{{"First Name"}}</td>
                 <td>{{"Last Name"}}</td>
+                <td>{{"Date of Creation"}}</td>
             </tr> 
         </table>
     </div>
@@ -27,6 +28,7 @@
                 <td>{{u.email}}</td>
                 <td>{{u.firstname}}</td>
                 <td>{{u.lastname}}</td>
+                <td>{{u.date}}</td>
             </tr> 
         </table>
         <div *ngFor = "let p of myPosts">
@@ -42,9 +44,10 @@
         <table id = "friendsTable">
             <tr class = "headerRow">
                 <td>{{"User Name"}}</td>
-                <td>{{"Email"}}</td>
+                
                 <td>{{"First Name"}}</td>
                 <td>{{"Last Name"}}</td>
+                <td>{{"Alter Friendship"}}</td>
             </tr> 
         </table>
     </div>
@@ -52,18 +55,27 @@
         <table>
             <tr>
                 <td>{{u.username}}</td>
-                <td>{{u.email}}</td>
+                
                 <td>{{u.firstname}}</td>
                 <td>{{u.lastname}}</td>
                 <td><button class = "btn" type="button" (click)="unFriend(u.username)">Unfriend</button></td>
             </tr>
            
         </table>
+    </div><div *ngIf="myPendingFriends.length > 0">
+        <table>
+            <tr class = "headerRow">
+                <td>{{"User Name"}}</td>
+                <td>{{"First Name"}}</td>
+                <td>{{"Last Name"}}</td>
+                <td>{{"Alter Friendship"}}</td>
+            </tr> 
+        </table>
     </div>
     <div *ngFor = "let u of myPendingFriends">
         <table>
             <td>{{u.username}}</td>
-            <td>{{u.email}}</td>
+            
             <td>{{u.firstname}}</td>
             <td>{{u.lastname}}</td>
             <td><button class = "btn" type="button"  (click)="approveFriend(u.username)">Approve</button></td>
@@ -80,18 +92,18 @@
     <div *ngIf="allPosts.length > 0">
         <table>
             <tr class = "headerRow">
-                <td>{{"User Name"}}</td>
+                <td class = "usernameColumn">{{"User Name"}}</td>
                 <td>{{"Message"}}</td>
-                <td>{{"Sent Time"}}</td>
+                <td class = "sentTimeColumn">{{"Sent Time"}}</td>
             </tr> 
         </table>
     </div>
     <div *ngFor = "let p of allPosts">
         <table>
             <tr>
-                <td>{{p.username}}</td>
-                <td>{{p.post}}</td>
-                <td>{{p.senttime}}</td>
+                <td class = "usernameColumn" >{{p.username}}</td>
+                <td id = "thepost">{{p.post}}</td>
+                <td class = "sentTimeColumn">{{p.senttime}}</td>
             </tr> 
         </table>
     </div>
@@ -118,7 +130,7 @@
             <label for="message" id = "myPostLabel">What's on your mind?</label>
             <input type="text" id = "posts" formControlName="message" class="form-control" [ngClass]="{ 'is-invalid': submitted && sendPostMessageFunc.message.errors }" />
             <div *ngIf="submitted && sendPostMessageFunc.message.errors" class="invalid-feedback">
-                <div *ngIf="sendPostMessageFunc.message.errors.required">Message is required</div>
+               
             </div>
             <button id = "postBtn"[disabled]="loading" class="btn btn-primary">
                 <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>

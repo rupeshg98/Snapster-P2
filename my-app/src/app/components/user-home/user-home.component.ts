@@ -94,6 +94,11 @@ export class UserHomeComponent implements OnInit {
       (data) => {
         console.log(data)
         this.clearObjects();
+        for (let i=0; i<data.length; i++) {
+          let dateStr = data[i]['date'];
+          let dataValue = new Date(parseInt(dateStr));
+          data[i]['date'] = dataValue;
+        }
         //this.getPostMessages(false);
         this.myProfile = data;
       },
@@ -293,7 +298,7 @@ export class UserHomeComponent implements OnInit {
         this.clearObjects();
         for (let i=0; i<data.length; i++) {
           let dateStr = data[i]['senttime'];
-          let dataValue = new Date(parseInt(dateStr));
+          let dataValue = new Date(parseInt(dateStr))
           data[i]['senttime'] = dataValue
         }
         if (includeFriends == "true"){

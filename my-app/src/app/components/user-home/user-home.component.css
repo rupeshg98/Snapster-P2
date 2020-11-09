@@ -22,6 +22,13 @@
 .form-group1 button.active {
 	background-color: #ddd;
 }
+.form-group{
+	color: black;
+	font-family: "Times New Roman", Times, serif; 
+	font-weight: bold;
+	font-size: 20px;
+
+}
 
 table {
 	font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
@@ -61,16 +68,14 @@ table tr:nth-child(even) {
 #posts{
 	
 	
-	position: relative; top:20px; right: 195px;
+	
 	
 	width: 700px;
-	margin: auto;
+	
 	
 }
 
-#postBtn{
-	position: relative;right: 400px; top: 400px; 
-}
+
 #myPostLabel{
 	color: black;
 	font-family: "Times New Roman", Times, serif; 
@@ -80,10 +85,25 @@ table tr:nth-child(even) {
 
 .headerRow{
 	color: black;
+	text-align:center;
 	font-family: "Times New Roman", Times, serif; 
 	font-weight: bold;
 	font-size: 20px;
+	background-color: #ACDF87;;
 }
-#friendsTable{
-	table-layout: fixed ;
+
+button{
+	text-align:center;
+}
+
+.usernameColumn{
+	width: 80px;
+}
+
+.sentTimeColumn{
+	width: 250px;
+}
+
+#thepost{
+	text-align:center;
 }
