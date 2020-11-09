@@ -124,7 +124,7 @@ public class SnapsterController {
 	}
 */
 	@PostMapping(path = "/addPhoto")
-	public void addPhoto(HttpServletRequest request, @RequestBody File file) {
+	public void addPhoto(HttpServletRequest request, @RequestBody Object file) {
 		String caption = request.getParameter("caption");
 		String username = request.getParameter("username");
 		System.out.println("Inside addPhoto Caption: " + caption + ", username: " + username + ", file: " + file);
