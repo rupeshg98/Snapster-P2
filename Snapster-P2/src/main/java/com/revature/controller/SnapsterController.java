@@ -5,14 +5,16 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.github.f4b6a3.uuid.UuidCreator;
 import com.revature.model.FriendRequest;
 import com.revature.model.Photo;
 import com.revature.model.User;
@@ -107,7 +109,7 @@ public class SnapsterController {
 		return photos;
 
 	}
-
+/*
 	@PostMapping(path = "/addPhoto", produces = MediaType.APPLICATION_JSON_VALUE)
 	public void addPhoto(@RequestParam("file") File file, @RequestParam("caption") String caption,
 			@RequestParam("username") String username) {
@@ -120,7 +122,14 @@ public class SnapsterController {
 		snapsterService.insertPhoto(photo);
 //		return photo;
 	}
-
+*/
+	@PostMapping(path = "/addPhoto", produces = MediaType.APPLICATION_JSON_VALUE)
+	public void addPhoto(HttpServletRequest request, @RequestBody File file) {
+		String caption = request.getParameter("caption");
+		String username = request.getParameter("username");
+		System.out.println("Inside addPhoto Caption: " + caption + ", username: " + username + ", file: " + file);
+		
+	}
 	@GetMapping(path = "/addPost", produces = MediaType.APPLICATION_JSON_VALUE)
 	public boolean addPost(@RequestParam("username") String username, @RequestParam("post") String post) {
 		UserPosts userPost = new UserPosts();
