@@ -1,5 +1,5 @@
 # Snapster-P2
-Want to express yourself and share photos of your interests with others? With a click of a button, Snapster lets you upload images that either only you and your friends or the 
+Want to express yourself and share photos of your interests with others? With a click of a button, Snapster lets you upload messages and images that either only you and your friends or the 
 whole world can see. Connect with your friends to see what they’re up to!
 
 Technologies used:
