@@ -24,7 +24,7 @@ Want to express yourself and share photos of your interests with others? With a 
 Clone repository as a whole. Open the "my-app" folder in VS Code and run the command "ng serve" in Angular CLI to view and interact with website. 
 
 ## Contributors
-Rupesh Gudipudi
-Rhett Martin
-Josh Hyde
+Rupesh Gudipudi <br />
+Rhett Martin <br />
+Josh Hyde <br />
 
